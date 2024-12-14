@@ -21,11 +21,12 @@ The game features a **choice-and-consequence system**:
 - [1001 Fonts](https://www.1001fonts.com/)
   - **Menu Title**: *Salamahtype*
   - **Menu Body**: *Eunice*
+  - **Backstory Body**: *Fake Nice Demo Version by Allouse Studio*
 
 ### Soundtracks
 - [itch.io Soundtracks](https://itch.io/soundtracks)
 - [Pixabay](https://pixabay.com/)
-  - **Game Menu Theme**: *Wrenwick*
+  - **Game Theme**: *Wrenwick*
   - **Item Selection Sound**: *amaze98*
   - **Realization Theme**: *Wrenwick*
 
@@ -37,13 +38,6 @@ The game features a **choice-and-consequence system**:
 ---
 
 ## Development Roadmap
-
-### Start Screen
-- **Structure**:
-  - Display backstory before transitioning to Level 1.
-  - Include a timer (e.g., 30 seconds or time sufficient for reading).
-  - Auto-transition to Level 1 when the timer ends.
-  - **Skip Button**: Allows players to immediately jump to Level 1.
 
 ### Inventory System
 - **Design**:
@@ -76,8 +70,6 @@ The game features a **choice-and-consequence system**:
 ## To-Do List
 
 ### Core Features
-- [ ] Implement start screen (after main menu) with backstory and timer.
-- [ ] Add skip button to bypass backstory.
 - [ ] Develop inventory system (Visuals) to display collected items.
 - [ ] Implement pause screen with hint and quit functionality.
 - [ ] Create item combination mechanics.
@@ -108,6 +100,6 @@ The game features a **choice-and-consequence system**:
 ---
 
 ## Credits
-- Fonts: *Salamahtype*, *Eunice*
+- Fonts: *Salamahtype*, *Eunice*, *Allouse Studio*
 - Soundtracks: *Wrenwick*, *amaze98*
 - Visual Assets: *lynocs*, *penzilla*, TBD
