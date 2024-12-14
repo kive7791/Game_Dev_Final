@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyk02ol2loinc"]
+[gd_scene load_steps=8 format=3 uid="uid://cyk02ol2loinc"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ofvdv"]
 [ext_resource type="PackedScene" uid="uid://v6s7fglhx2i4" path="res://Scenes/game_over.tscn" id="3_b4gvp"]
 [ext_resource type="PackedScene" uid="uid://cxhmbcu2y6onb" path="res://Scenes/player.tscn" id="3_kru70"]
-[ext_resource type="PackedScene" uid="uid://d4crvm8cercjp" path="res://Scenes/intro_screen.tscn" id="4_axq4h"]
+[ext_resource type="PackedScene" uid="uid://d4crvm8cercjp" path="res://Scenes/main_menu.tscn" id="4_axq4h"]
 [ext_resource type="AudioStream" uid="uid://ch8o7oaxf2fq8" path="res://Assets/SoundTracks/Secret of Fire - Final Text.mp3" id="5_3veri"]
 [ext_resource type="PackedScene" uid="uid://d0miinwi6udhw" path="res://Scenes/credit.tscn" id="5_e5cj1"]
+[ext_resource type="PackedScene" uid="uid://bbs3qmsd2cfuo" path="res://Scenes/backstory_screen.tscn" id="6_yy1l3"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_ofvdv")
@@ -13,4 +14,5 @@ player_scene = ExtResource("3_kru70")
 game_over_scene = ExtResource("3_b4gvp")
 intro_scene = ExtResource("4_axq4h")
 credit_scene = ExtResource("5_e5cj1")
+backstory_scene = ExtResource("6_yy1l3")
 bg_music = ExtResource("5_3veri")

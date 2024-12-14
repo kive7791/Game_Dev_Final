@@ -5,6 +5,7 @@ extends Node2D
 @export var game_over_scene: PackedScene # Assign the Game Over scene in the editor
 @export var intro_scene: PackedScene # Assign the Introduction scene in the editor
 @export var credit_scene: PackedScene # Assign the Credit scene in the editor
+@export var backstory_scene: PackedScene # Assign the Backstory scene in the editor
 @export var level_scenes: Array[PackedScene] = [
 	preload("res://Scenes/level_1.tscn")
 ]
@@ -43,7 +44,7 @@ func _start_intro() -> void:
 	else:
 		print("GlobalPrior not initialized.")
 	
-	current_scene.connect("start_game", Callable(self, "_on_start_game"))
+	current_scene.connect("start_backstory_game", Callable(self, "_on_backstory_game"))
 	current_scene.connect("credit_game", Callable(self, "_on_credit_game"))
 	current_scene.connect("quit_game", Callable(self, "_on_quit_game"))
 
@@ -58,6 +59,15 @@ func _on_restart_game() -> void:
 	current_level = 0
 	player_health = 100 
 	load_level(0)
+
+func _on_backstory_game() -> void:
+	print("Game _on_backstory_game")
+	if current_scene:
+		current_scene.queue_free()
+	current_scene = backstory_scene.instantiate()
+	add_child(current_scene)
+	current_scene.connect("back_game", Callable(self, "_on_back_game"))
+	current_scene.connect("start_game", Callable(self, "_on_start_game"))
 
 func _on_credit_game() -> void:
 	print("Game _on_credit_game")
@@ -92,7 +102,7 @@ func mine_change_scene(new_scene_path: PackedScene):
 	add_child(current_scene)
 	
 	# This has the potential of not working, because not always is these signals connected
-	current_scene.connect("start_game", Callable(self, "_on_start_game"))
+	current_scene.connect("start_backstory_game", Callable(self, "_on_backstory_game"))
 	current_scene.connect("credit_game", Callable(self, "_on_credit_game"))
 	current_scene.connect("quit_game", Callable(self, "_on_quit_game"))
 	

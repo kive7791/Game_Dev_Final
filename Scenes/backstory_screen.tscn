@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbs3qmsd2cfuo"]
+
+[ext_resource type="Script" path="res://Scripts/backstory_screen.gd" id="1_rig63"]
+[ext_resource type="FontFile" uid="uid://5uxrw0gyq3k3" path="res://Assets/Fonts/Titles.otf" id="2_rhab1"]
+[ext_resource type="Script" path="res://Scenes/handwritten_body.gd" id="3_gcuxf"]
+[ext_resource type="Texture2D" uid="uid://cov0xpf5msnog" path="res://Assets/Background/bedroom_nolight.png" id="3_ks074"]
+[ext_resource type="FontFile" uid="uid://dm24ympkvn552" path="res://Assets/Fonts/Handwriting/PrettyNote.otf" id="3_my7vf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6bb"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.34902, 0.827451, 0.0509804, 1)
+shadow_size = 50
+
+[node name="Backstory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_right = 10.0
+script = ExtResource("1_rig63")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.5
+offset_top = 6.5
+offset_right = -78.5
+offset_bottom = 166.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.801)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_il6bb")
+
+[node name="Rows" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PanelContainer/Rows"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="HandwrittenBody" type="Label" parent="CanvasLayer/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.176419, 0.176419, 0.176419, 1)
+theme_override_fonts/font = ExtResource("3_my7vf")
+theme_override_font_sizes/font_size = 39
+text = "Hello…
+
+You awaken in a strange room, unnatural to you. The walls are uncomfortably beautiful, the windows locked, and the door… 
+nowhere to be found. This place feels familiar, yet wrong, as though it exists only in fragments of a forgotten dream.
+
+Your mind races as you try to remember how you got here, but the harder you try, the further the memories slip away.
+
+One thing is clear: you’re not supposed to be here.
+
+Scattered around the room are strange objects—ordinary at first glance, but they seem to hum with significance 
+as if they hold pieces of a larger puzzle.
+
+A voice, distant but unmistakable, whispers:
+                   \"Piece together the story, and the way home will reveal itself. Fail… and remain lost forever.\"
+
+Time is slipping away. Shadows grow darker, and the room grows colder with every passing second.
+Can you uncover the truth and find your way back before it’s too late?"
+script = ExtResource("3_gcuxf")
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+offset_left = 951.0
+offset_top = 560.0
+offset_right = 1103.0
+offset_bottom = 613.0
+theme_override_fonts/font = ExtResource("2_rhab1")
+theme_override_font_sizes/font_size = 50
+text = "Back"
+
+[node name="SkipButton" type="Button" parent="CanvasLayer"]
+offset_left = 951.0
+offset_top = 43.9999
+offset_right = 1103.0
+offset_bottom = 96.9999
+theme_override_fonts/font = ExtResource("2_rhab1")
+theme_override_font_sizes/font_size = 50
+text = "Skip"
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(232, 413)
+scale = Vector2(0.7, 0.721)
+texture = ExtResource("3_ks074")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 50.0
+one_shot = true
+autostart = true
+
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/SkipButton" to="." method="_on_start_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

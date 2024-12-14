@@ -1,7 +1,7 @@
 extends Control
 
 # Define the signal
-signal start_game
+signal start_backstory_game
 signal quit_game
 signal credit_game
 
@@ -15,8 +15,8 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_start_pressed() -> void:
-	print("intro_screen _on_start_pressed")
-	emit_signal("start_game")
+	print("intro_screen _on_backstory_pressed")
+	emit_signal("start_backstory_game")
 
 func _on_quit_pressed() -> void:
 	print("intro_screen _on_quit_pressed")

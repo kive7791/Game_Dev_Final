@@ -14,23 +14,24 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(148, 654, 233, 559, 229
 script = ExtResource("1_xkot6")
 
 [node name="Player" parent="." instance=ExtResource("2_elqvt")]
+z_index = 1
 position = Vector2(252.13, 604.274)
 scale = Vector2(2, 2)
 
 [node name="crystal_collectable" parent="." instance=ExtResource("4_q5lny")]
+z_index = 1
 position = Vector2(423.763, 594.739)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 323)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-z_index = 11
+z_index = 1
 navigation_polygon = SubResource("NavigationPolygon_nv4m1")
 
 [node name="Background" type="Node" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-visible = false
 position = Vector2(576.5, 324.5)
 scale = Vector2(0.281006, 0.280816)
 texture = ExtResource("3_gi6xq")
