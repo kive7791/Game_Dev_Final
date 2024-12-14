@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch8acu7r55wsg"]
+
+[ext_resource type="Script" path="res://Globals/global_prior_scene.gd" id="1_wgosq"]
+
+[node name="PriorScene" type="Node"]
+script = ExtResource("1_wgosq")

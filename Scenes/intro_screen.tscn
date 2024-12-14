@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4crvm8cercjp"]
+
+[ext_resource type="Script" path="res://Scripts/intro_screen.gd" id="1_nnb1l"]
+[ext_resource type="FontFile" path="res://Assets/Fonts/NicemilkDEMO.otf" id="2_er5eo"]
+[ext_resource type="Texture2D" uid="uid://cov0xpf5msnog" path="res://Assets/Background/bedroom_nolight.png" id="3_wllvp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6bb"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.34902, 0.827451, 0.0509804, 1)
+shadow_size = 50
+
+[node name="Introduction" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_right = 10.0
+script = ExtResource("1_nnb1l")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 688.0
+offset_top = 96.0
+offset_right = -71.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.801)
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_il6bb")
+
+[node name="Rows" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PanelContainer/Rows"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Blank Space3" type="Label" parent="CanvasLayer/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_er5eo")
+theme_override_font_sizes/font_size = 100
+text = "               "
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_er5eo")
+theme_override_font_sizes/font_size = 100
+text = "Lost  Story"
+
+[node name="Blank Space" type="Label" parent="CanvasLayer/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_er5eo")
+theme_override_font_sizes/font_size = 100
+text = "               "
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="CanvasLayer/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_er5eo")
+theme_override_font_sizes/font_size = 50
+text = "New Game"
+
+[node name="CreditsButton2" type="Button" parent="CanvasLayer/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_er5eo")
+theme_override_font_sizes/font_size = 50
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_er5eo")
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="Blank Space2" type="Label" parent="CanvasLayer/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_er5eo")
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(232, 413)
+scale = Vector2(0.976563, 1.00608)
+texture = ExtResource("3_wllvp")
+
+[connection signal="pressed" from="CanvasLayer/PanelContainer/Rows/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/Rows/CenterContainer/VBoxContainer/CreditsButton2" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/Rows/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

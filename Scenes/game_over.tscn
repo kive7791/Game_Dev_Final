@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3 uid="uid://v6s7fglhx2i4"]
+
+[ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_tjcc2"]
+[ext_resource type="FontFile" path="res://Assets/Fonts/NicemilkDEMO.otf" id="2_umkio"]
+[ext_resource type="Texture2D" uid="uid://cov0xpf5msnog" path="res://Assets/Background/bedroom_nolight.png" id="3_awj16"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6bb"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.498806, 0, 0.0565974, 1)
+shadow_size = 50
+
+[node name="End" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_right = 10.0
+script = ExtResource("1_tjcc2")
+
+[node name="GameOverUI" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOverUI"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 127.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.811617)
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_il6bb")
+
+[node name="Rows" type="VBoxContainer" parent="GameOverUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverUI/PanelContainer/Rows"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverUI/PanelContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Blank Space" type="Label" parent="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_umkio")
+theme_override_font_sizes/font_size = 100
+text = "               "
+horizontal_alignment = 1
+
+[node name="Game_Over" type="Label" parent="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_umkio")
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Win_Lose" type="Label" parent="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_umkio")
+theme_override_font_sizes/font_size = 25
+text = "YOU WIN!"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Blank Space3" type="Label" parent="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_umkio")
+theme_override_font_sizes/font_size = 100
+text = "               "
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_umkio")
+theme_override_font_sizes/font_size = 50
+text = "Restart"
+
+[node name="Quit" type="Button" parent="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_umkio")
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="CreditsButton2" type="Button" parent="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_umkio")
+theme_override_font_sizes/font_size = 50
+text = "Credits"
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(447, 381)
+scale = Vector2(0.986674, 1.01649)
+texture = ExtResource("3_awj16")
+
+[connection signal="pressed" from="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer/CreditsButton2" to="." method="_on_credits_button_pressed"]
