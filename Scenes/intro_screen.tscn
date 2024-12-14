@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d4crvm8cercjp"]
 
 [ext_resource type="Script" path="res://Scripts/intro_screen.gd" id="1_nnb1l"]
-[ext_resource type="FontFile" path="res://Assets/Fonts/NicemilkDEMO.otf" id="2_er5eo"]
+[ext_resource type="FontFile" uid="uid://5uxrw0gyq3k3" path="res://Assets/Fonts/Titles.otf" id="2_er5eo"]
 [ext_resource type="Texture2D" uid="uid://cov0xpf5msnog" path="res://Assets/Background/bedroom_nolight.png" id="3_wllvp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6bb"]
