@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 #Not used at the moment
 #@onready var nav2D: NavigationRegion2D = $NavigationRegion2D
