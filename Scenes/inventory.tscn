@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c3ihpiaq710y5"]
 
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="1_klocf"]
-[ext_resource type="Texture2D" uid="uid://yb74inpq17iu" path="res://icon.svg" id="2_dj073"]
+[ext_resource type="Texture2D" uid="uid://do444tg1vrj1l" path="res://icon.svg" id="2_dj073"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mqytq"]
 

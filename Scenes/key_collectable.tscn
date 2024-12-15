@@ -1,7 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://culo8wh1jafbc"]
+[gd_scene load_steps=5 format=3 uid="uid://culo8wh1jafbc"]
 
 [ext_resource type="Script" path="res://Scripts/key_collectable.gd" id="1_kukja"]
 [ext_resource type="Texture2D" uid="uid://derchpgiwaurc" path="res://Assets/Collectable/bedroom/key_bedroom.png" id="2_76153"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a5f1j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_76153")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5lpl1"]
 size = Vector2(11, 10)
@@ -10,10 +21,10 @@ size = Vector2(11, 10)
 collision_layer = 2
 script = ExtResource("1_kukja")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(570, 328)
 scale = Vector2(0.284, 0.284)
-texture = ExtResource("2_76153")
+sprite_frames = SubResource("SpriteFrames_a5f1j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(237.5, 557)

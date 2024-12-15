@@ -159,14 +159,9 @@ func change_state(newState):
 func add_to_inventory(item: Node2D):
 	print("player: inventory items: ", inventory)
 	print("player: add_to_inventory: ", item.name)
-	for i in 5:
-		var name = item.name
-		name = name + "_" + str(i)
-		# Check if the item is already in inventory
-		if name not in inventory:
-			print("player: append inventory ", name)
-			inventory.append(name) # Add the item to the inventory
-			add_item_to_ui(item)
+	print("player: append inventory ", item.name)
+	inventory.append(item.name) # Add the item to the inventory
+	add_item_to_ui(item)
 
 # Add a single item to the UI
 func add_item_to_ui(item: Node2D):

@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=3 uid="uid://cxhmbcu2y6onb"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_no606"]
-[ext_resource type="Texture2D" uid="uid://du4nprim12uwp" path="res://Assets/Player/AnimationSheet_Character.png" id="2_suo7x"]
+[ext_resource type="Texture2D" uid="uid://bb5oxaih0qooo" path="res://Assets/Player/AnimationSheet_Character.png" id="2_suo7x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1y44"]
 atlas = ExtResource("2_suo7x")
@@ -395,9 +395,8 @@ script = ExtResource("1_no606")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t8sko")
-animation = &"Idle"
+animation = &"Walk"
 autoplay = "Idle"
-frame_progress = 0.751192
 offset = Vector2(0, -16)
 
 [node name="MainCollider" type="CollisionShape2D" parent="."]
