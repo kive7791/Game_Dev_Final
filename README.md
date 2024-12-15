@@ -76,9 +76,6 @@ The game features a **choice-and-consequence system**:
 ### Level 1 Design
 - [ ] Program item interactions.
 
-### Player
-- [ ] Fix going out of bounds 
-
 ### End Game Logic
 - [ ] Create a recursive function to check:
   - If the player has all required items.

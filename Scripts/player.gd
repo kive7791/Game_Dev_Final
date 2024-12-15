@@ -84,6 +84,11 @@ func move_along_path(delta):
 	
 	
 	if move_distance < distance_to_next:
+		if direction != Vector2.ZERO and not has_moved:
+			has_moved = true
+			emit_signal("game_started")  # Emit the signal only once
+			print("Player has started moving. Signal emitted.")
+		# move
 		velocity = direction * move_speed
 	else:
 		velocity = Vector2.ZERO
