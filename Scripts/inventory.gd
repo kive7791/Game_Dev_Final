@@ -25,7 +25,8 @@ func add_item(item_name: String, item_sprite: Texture, category: String = "defau
 	# Add the item's TextureRect for its sprite
 	var item_image = TextureRect.new()
 	item_image.texture = item_sprite
-	item_image.size = Vector2(0.5, 0.5)  # Set icon size
+	item_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED  # Ensure aspect ratio is preserved
+	item_image.scale = Vector2(0.25, 0.25)  # Set icon size
 	item_hbox.add_child(item_image)
 
 	# Add the item's Label for its name
