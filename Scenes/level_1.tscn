@@ -20,14 +20,14 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(148, 654, 233, 559, 229
 script = ExtResource("1_xkot6")
 
 [node name="InventoryPanel" parent="." instance=ExtResource("2_hju6f")]
-z_index = 1
+z_index = 2
 offset_left = 814.0
 offset_top = 104.0
 offset_right = 814.0
 offset_bottom = 104.0
 
 [node name="Player" parent="." instance=ExtResource("2_elqvt")]
-z_index = 1
+z_index = 3
 position = Vector2(276, 584)
 scale = Vector2(2, 2)
 
@@ -36,7 +36,7 @@ z_index = 1
 position = Vector2(-8, 3)
 
 [node name="Crystal" parent="." instance=ExtResource("4_q5lny")]
-z_index = 1
+z_index = 3
 position = Vector2(553, 568)
 
 [node name="rug_event" parent="." instance=ExtResource("6_67doa")]
@@ -44,7 +44,7 @@ z_index = 1
 
 [node name="paper_collectable" parent="." instance=ExtResource("7_e36fo")]
 visible = false
-z_index = 1
+z_index = 2
 position = Vector2(0, -3)
 
 [node name="Camera2D" type="Camera2D" parent="."]

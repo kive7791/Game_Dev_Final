@@ -20,8 +20,6 @@ enum BackgroundState { DAY, NIGHT, NIGHTWLIGHTS }
 var new_path: PackedVector2Array = PackedVector2Array()
 var current_state = BackgroundState.DAY
 var lights_on = false  # Keeps track of light state
-var rug_pulled = false # Keep track of rug pulled
-var rug_pulled_count = 0 # keep tack of how many times the rug is pulled
 
 func _ready() -> void:
 	$GameplayTimer.stop()  # Ensure timer is stopped initially
@@ -122,15 +120,12 @@ func _on_light_event_triggered() -> void:
 
 func _on_rug_event_triggered() -> void:
 	if current_state == BackgroundState.DAY:
-		rug_pulled = !rug_pulled  # Toggle the rug state
-		if rug_pulled:
-			# Allow for paper to be seen
-			print("Rug clicked, pull")
-			Rug_Sprite.texture = preload("res://Assets/Collectable/bedroom/Rug_pulled_bedroom.png")
-			if rug_pulled_count < 1:
-				Paper.visible = true
+		print("Rug clicked, pull")
+		Rug_Sprite.texture = preload("res://Assets/Collectable/bedroom/Rug_pulled_bedroom.png")
+		if is_instance_valid(Paper):
+			Paper.visible = true
 		else:
-			Rug_Sprite.texture = preload("res://Assets/Collectable/bedroom/rug_bedroom.png")
+			print("Paper collected already")
 	else:
 		print("Sorry, their is an invisible force, not allowing for this")
 
