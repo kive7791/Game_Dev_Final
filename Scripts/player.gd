@@ -59,7 +59,8 @@ func set_inventory_reference():
 		for child in current_scene.get_children():
 			print("player: child ", child.name)
 			if child.name == "InventoryPanel":
-				inventory_panel = child.get_node("ScrollContainer/VBoxContainer")
+				#inventory_panel = child.get_node("ScrollContainer/VBoxContainer")
+				inventory_panel = child
 				print("player: inventory_label ", inventory_panel)
 				break
 	print("player: inventory: ", inventory)
@@ -158,45 +159,58 @@ func change_state(newState):
 func add_to_inventory(item: Node2D):
 	print("player: inventory items: ", inventory)
 	print("player: add_to_inventory: ", item.name)
-	# Check if the item is already in inventory
-	if item.name not in inventory:
-		print("player: append inventory ", item.name)
-		inventory.append(item.name) # Add the item to the inventory
-		add_item_to_ui(item)
+	for i in 5:
+		var name = item.name
+		name = name + "_" + str(i)
+		# Check if the item is already in inventory
+		if name not in inventory:
+			print("player: append inventory ", name)
+			inventory.append(name) # Add the item to the inventory
+			add_item_to_ui(item)
 
 # Add a single item to the UI
 func add_item_to_ui(item: Node2D):
 	print("player: add_item_to_ui ", item.name)
 	print("player: inventory_label ", inventory_panel)
 	if inventory_panel:
-		var item_hbox = HBoxContainer.new()
-		item_hbox.name = item.name
-
-		# Add item image
-		var item_image = TextureRect.new()
-
 		var item_sprite : Texture = null
 		# Use a specific known class like AnimatedSprite2D
 		for child in item.get_children():
 			print("player: child ", child.name)
 			if child.name == "AnimatedSprite2D":
 				item_sprite = child.sprite_frames.get_frame_texture(child.animation, child.frame)
+				print("player: item ", item_sprite)
+				if inventory_panel.has_method("add_item"):  # Check if the method exists
+					inventory_panel.add_item(item.name, item_sprite)  # Directly call the method on the Player
 				break
-		print("player: item ", item_sprite)
-		if not item_sprite:
-			print("Warning: Sprite not found for ", item.name)
-			return
-
-		item_image.texture = item_sprite
-		item_image.custom_minimum_size = Vector2(32, 32)  # Set icon size correctly
-		item_hbox.add_child(item_image)
-
-		# Add item name
-		var item_label = Label.new()
-		item_label.text = item.name
-		item_hbox.add_child(item_label)
-
-		inventory_panel.add_child(item_hbox)
+		#var item_hbox = HBoxContainer.new()
+		#item_hbox.name = item.name
+#
+		## Add item image
+		#var item_image = TextureRect.new()
+#
+		#var item_sprite : Texture = null
+		## Use a specific known class like AnimatedSprite2D
+		#for child in item.get_children():
+			#print("player: child ", child.name)
+			#if child.name == "AnimatedSprite2D":
+				#item_sprite = child.sprite_frames.get_frame_texture(child.animation, child.frame)
+				#break
+		#print("player: item ", item_sprite)
+		#if not item_sprite:
+			#print("Warning: Sprite not found for ", item.name)
+			#return
+#
+		#item_image.texture = item_sprite
+		#item_image.custom_minimum_size = Vector2(32, 32)  # Set icon size correctly
+		#item_hbox.add_child(item_image)
+#
+		## Add item name
+		#var item_label = Label.new()
+		#item_label.text = item.name
+		#item_hbox.add_child(item_label)
+#
+		#inventory_panel.add_child(item_hbox)
 
 # Example function for item interaction with a collectable item
 func _on_collectable_item_clicked(item_name):
