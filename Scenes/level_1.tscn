@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0nry1xbgnpff"]
+[gd_scene load_steps=9 format=3 uid="uid://d0nry1xbgnpff"]
 
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_xkot6"]
 [ext_resource type="PackedScene" uid="uid://cxhmbcu2y6onb" path="res://Scenes/player.tscn" id="2_elqvt"]
 [ext_resource type="PackedScene" uid="uid://c3ihpiaq710y5" path="res://Scenes/inventory.tscn" id="2_hju6f"]
-[ext_resource type="Texture2D" uid="uid://c6wvnu2f2m20s" path="res://Assets/Background/bedroom.png" id="3_gi6xq"]
+[ext_resource type="Texture2D" uid="uid://q5005jvj3jms" path="res://Assets/Background/bedroom.png" id="3_gi6xq"]
 [ext_resource type="PackedScene" uid="uid://rdy6f15stj8w" path="res://Scenes/collectable.tscn" id="4_q5lny"]
-[ext_resource type="FontFile" uid="uid://5uxrw0gyq3k3" path="res://Assets/Fonts/Titles.otf" id="5_fyhvu"]
-[ext_resource type="FontFile" uid="uid://rmmqmgeodjkq" path="res://Assets/Fonts/Timer.otf" id="6_5fpjs"]
+[ext_resource type="FontFile" uid="uid://bgl0xeuk5pooi" path="res://Assets/Fonts/Titles.otf" id="5_fyhvu"]
+[ext_resource type="FontFile" uid="uid://cii3m35vlemkk" path="res://Assets/Fonts/Timer.otf" id="6_5fpjs"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nv4m1"]
 vertices = PackedVector2Array(437, 562, 716.609, 570.344, 850.398, 641.313, 637.922, 643, 170.398, 643.953, 243.711, 562.023, 274.422, 562, 437, 528.891, 711.992, 526.094, 248.117, 540.398, 240.32, 543.383)
@@ -17,19 +17,20 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(148, 654, 233, 559, 229
 script = ExtResource("1_xkot6")
 
 [node name="InventoryPanel" parent="." instance=ExtResource("2_hju6f")]
-offset_left = 1037.0
-offset_top = 499.0
-offset_right = 1037.0
-offset_bottom = 499.0
+z_index = 1
+offset_left = 814.0
+offset_top = 104.0
+offset_right = 814.0
+offset_bottom = 104.0
 
 [node name="Player" parent="." instance=ExtResource("2_elqvt")]
 z_index = 1
-position = Vector2(252.13, 604.274)
+position = Vector2(276, 584)
 scale = Vector2(2, 2)
 
 [node name="Crystal" parent="." instance=ExtResource("4_q5lny")]
 z_index = 1
-position = Vector2(423.763, 594.739)
+position = Vector2(553, 568)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 323)

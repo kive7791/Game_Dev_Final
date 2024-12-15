@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://j6lcw3xxrle5"]
 
 [ext_resource type="Script" path="res://Scripts/hint_overall.gd" id="1_ul2sm"]
-[ext_resource type="Texture2D" uid="uid://bgiedb6qypwd5" path="res://Assets/Background/bedroom_light.png" id="2_26pmu"]
-[ext_resource type="FontFile" uid="uid://5uxrw0gyq3k3" path="res://Assets/Fonts/Titles.otf" id="3_oinss"]
+[ext_resource type="Texture2D" uid="uid://0o40syppcr1q" path="res://Assets/Background/bedroom_light.png" id="2_26pmu"]
+[ext_resource type="FontFile" uid="uid://bgl0xeuk5pooi" path="res://Assets/Fonts/Titles.otf" id="3_oinss"]
 
 [node name="hint_overall" type="Node2D"]
 script = ExtResource("1_ul2sm")

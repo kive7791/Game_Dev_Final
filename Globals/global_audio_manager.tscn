@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnuakiajecr3u"]
 
-[ext_resource type="AudioStream" uid="uid://ch8o7oaxf2fq8" path="res://Assets/SoundTracks/Secret of Fire - Final Text.mp3" id="1_87pdm"]
+[ext_resource type="AudioStream" uid="uid://dkra7j0gotgkq" path="res://Assets/SoundTracks/Secret of Fire - Final Text.mp3" id="1_87pdm"]
 [ext_resource type="Script" path="res://Globals/global_audio_manager.gd" id="1_p42y1"]
 
 [node name="GlobalAudioManager" type="AudioStreamPlayer2D"]

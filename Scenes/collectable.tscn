@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://rdy6f15stj8w"]
 
 [ext_resource type="Script" path="res://Scripts/collectable.gd" id="1_4mser"]
-[ext_resource type="Texture2D" uid="uid://ns7dk1u0wode" path="res://Assets/Collectable/Crystal/red_crystal_0000.png" id="2_xvw5k"]
-[ext_resource type="Texture2D" uid="uid://ceba55kdkj68" path="res://Assets/Collectable/Crystal/red_crystal_0001.png" id="3_n8lw0"]
-[ext_resource type="Texture2D" uid="uid://siey7qtm6ovb" path="res://Assets/Collectable/Crystal/red_crystal_0002.png" id="4_rrqaa"]
-[ext_resource type="Texture2D" uid="uid://coetlc7sji4h3" path="res://Assets/Collectable/Crystal/red_crystal_0003.png" id="5_itw4j"]
+[ext_resource type="Texture2D" uid="uid://b7crptp2o6ugq" path="res://Assets/Collectable/Crystal/red_crystal_0000.png" id="2_xvw5k"]
+[ext_resource type="Texture2D" uid="uid://bba5lx82785ye" path="res://Assets/Collectable/Crystal/red_crystal_0001.png" id="3_n8lw0"]
+[ext_resource type="Texture2D" uid="uid://bsdrn17igrpsm" path="res://Assets/Collectable/Crystal/red_crystal_0002.png" id="4_rrqaa"]
+[ext_resource type="Texture2D" uid="uid://vgaomx6lx0wm" path="res://Assets/Collectable/Crystal/red_crystal_0003.png" id="5_itw4j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t6nnt"]
 atlas = ExtResource("2_xvw5k")

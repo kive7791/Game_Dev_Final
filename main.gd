@@ -70,7 +70,7 @@ func _on_backstory_game() -> void:
 	if current_scene:
 		current_scene.queue_free()
 	current_scene = backstory_scene.instantiate()
-	add_child(current_scene)
+	get_parent().add_child(current_scene)
 	current_scene.connect("back_game", Callable(self, "_on_back_game"))
 	current_scene.connect("start_game", Callable(self, "_on_start_game"))
 
@@ -105,7 +105,7 @@ func mine_change_scene(new_scene_path: PackedScene):
 	
 	# Load and instantiate the new scene
 	current_scene = new_scene_path.instantiate()
-	add_child(current_scene)
+	get_parent().add_child(current_scene)
 	
 	# This has the potential of not working, because not always is these signals connected
 	current_scene.connect("start_backstory_game", Callable(self, "_on_backstory_game"))
@@ -131,15 +131,16 @@ func load_level(level_index: int) -> void:
 	# Free current scene if necessary
 	if current_scene:
 		current_scene.queue_free()
+		#GlobalPriorScene.pop_scene()
 	current_level = level_index
-	
+
 	# Load the level scene
 	current_scene = level_scenes[level_index].instantiate()
 	print("main: current_scene ", current_scene.name, " ", current_scene.get_index(), " ", current_scene.get_children())
 	get_parent().add_child(current_scene)
 	GlobalPriorScene.push_scene(level_scenes[level_index])
 	print("Pushed level_scene")
-	
+
 	current_scene.connect("pause_game", Callable(self, "_on_pause_game"))
 	current_scene.connect("lost_timeout_game", Callable(self, "_on_lost_timeout_game"))
 
@@ -147,8 +148,9 @@ func _on_pause_game() -> void:
 	print("Game _on_pause_game")
 	if current_scene:
 		current_scene.queue_free()
+		#GlobalPriorScene.pop()
 	current_scene = pause_scene.instantiate()
-	add_child(current_scene)
+	get_parent().add_child(current_scene)
 	
 	current_scene.connect("back_game", Callable(self, "_on_back_game"))
 	current_scene.connect("quit_game", Callable(self, "_on_quit_game"))

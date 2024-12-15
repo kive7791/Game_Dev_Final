@@ -1,5 +1,4 @@
 extends CharacterBody2D
-class_name player
 
 signal game_started
 signal crystal_collected(body) # signal - crystal colleced for game
@@ -39,7 +38,7 @@ var interactable_object: Node = null
 var inventory: Array = []
 
 # Reference to the inventory UI label
-var inventory_label = null
+var inventory_panel = null
 
 func _ready():
 	print("player: _ready")
@@ -60,7 +59,8 @@ func set_inventory_reference():
 		for child in current_scene.get_children():
 			print("player: child ", child.name)
 			if child.name == "InventoryPanel":
-				inventory_label = child.get_node("ScrollContainer/VBoxContainer")
+				inventory_panel = child.get_node("ScrollContainer/VBoxContainer")
+				print("player: inventory_label ", inventory_panel)
 				break
 	print("player: inventory: ", inventory)
 
@@ -75,14 +75,13 @@ func move_along_path(delta):
 	if path.size() == 0:
 		change_state(IDLE)
 		return
-	
+
 	var move_distance = move_speed * delta
 	var starting_point = position
 	var next_point = path[0] #only accessed if path.size() > 0
 	var direction = (next_point - starting_point).normalized()
 	var distance_to_next = starting_point.distance_to(path[0])
-	
-	
+
 	if move_distance < distance_to_next:
 		if direction != Vector2.ZERO and not has_moved:
 			has_moved = true
@@ -168,8 +167,8 @@ func add_to_inventory(item: Node2D):
 # Add a single item to the UI
 func add_item_to_ui(item: Node2D):
 	print("player: add_item_to_ui ", item.name)
-	print("player: inventory_label ", inventory_label)
-	if inventory_label:
+	print("player: inventory_label ", inventory_panel)
+	if inventory_panel:
 		var item_hbox = HBoxContainer.new()
 		item_hbox.name = item.name
 
@@ -197,7 +196,7 @@ func add_item_to_ui(item: Node2D):
 		item_label.text = item.name
 		item_hbox.add_child(item_label)
 
-		inventory_label.add_child(item_hbox)
+		inventory_panel.add_child(item_hbox)
 
 # Example function for item interaction with a collectable item
 func _on_collectable_item_clicked(item_name):
