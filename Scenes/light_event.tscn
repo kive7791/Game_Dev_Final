@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://2exyfhaarrf8"]
+
+[ext_resource type="Script" path="res://Scripts/light_event.gd" id="1_s0p80"]
+[ext_resource type="Texture2D" uid="uid://j6xqx5atk22w" path="res://Assets/Collectable/NoLight/lights_bedroom_nolight.png" id="2_yx1f7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vt1on"]
+radius = 34.2345
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndurk"]
+size = Vector2(118, 69)
+
+[node name="light_event" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_s0p80")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(581.5, 323.5)
+scale = Vector2(0.283936, 0.284288)
+texture = ExtResource("2_yx1f7")
+
+[node name="CollisionShape2D_Left" type="CollisionShape2D" parent="."]
+position = Vector2(368, 26)
+shape = SubResource("CircleShape2D_vt1on")
+
+[node name="CollisionShape2D_Right" type="CollisionShape2D" parent="."]
+position = Vector2(723, 31.5)
+shape = SubResource("RectangleShape2D_ndurk")
