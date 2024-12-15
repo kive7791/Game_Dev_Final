@@ -76,10 +76,7 @@ func highlight_item():
 	print("[inventory.gd:42] highlight_item() called")
 	# Reset highlights for all items
 	for item in inventory_items:
-		for child in item.get_children():
-			if child is TextureRect:
-				print("player: child ", child.name)
-				child.modulate = Color(1, 1, 1, 1)  # Default color
+		item.modulate = Color(1, 1, 1, 1)  # Default color
 
 	# Highlight the selected item
 	if inventory_items.size() > selected_index:
