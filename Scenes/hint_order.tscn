@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://j6lcw3xxrle5"]
+
+[ext_resource type="Script" path="res://Scripts/hint_overall.gd" id="1_ul2sm"]
+[ext_resource type="Texture2D" uid="uid://bgiedb6qypwd5" path="res://Assets/Background/bedroom_light.png" id="2_26pmu"]
+[ext_resource type="FontFile" uid="uid://5uxrw0gyq3k3" path="res://Assets/Fonts/Titles.otf" id="3_oinss"]
+
+[node name="hint_overall" type="Node2D"]
+script = ExtResource("1_ul2sm")
+
+[node name="Background" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(576.5, 324.5)
+scale = Vector2(0.281006, 0.280816)
+texture = ExtResource("2_26pmu")
+
+[node name="Back" type="Button" parent="."]
+z_index = 1
+offset_left = 919.0
+offset_top = 26.0
+offset_right = 1123.0
+offset_bottom = 79.0
+theme_override_fonts/font = ExtResource("3_oinss")
+theme_override_font_sizes/font_size = 50
+text = "Back to game"
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+offset_left = 135.0
+offset_top = 286.0
+offset_right = 1050.0
+offset_bottom = 331.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.788235, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_oinss")
+theme_override_font_sizes/font_size = 50
+text = "This will be updated with item list and what the order is."
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

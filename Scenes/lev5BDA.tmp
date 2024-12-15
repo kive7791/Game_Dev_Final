@@ -19,6 +19,12 @@ script = ExtResource("1_xkot6")
 z_index = 1
 position = Vector2(252.13, 604.274)
 scale = Vector2(2, 2)
+move_speed = null
+gravity = null
+max_fall_speed = null
+jumpForce = null
+max_jump = null
+reset_position = null
 
 [node name="crystal_collectable" parent="." instance=ExtResource("4_q5lny")]
 z_index = 1

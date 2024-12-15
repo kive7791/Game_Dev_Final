@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyk02ol2loinc"]
+[gd_scene load_steps=12 format=3 uid="uid://cyk02ol2loinc"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ofvdv"]
 [ext_resource type="PackedScene" uid="uid://v6s7fglhx2i4" path="res://Scenes/game_over.tscn" id="3_b4gvp"]
@@ -7,6 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://ch8o7oaxf2fq8" path="res://Assets/SoundTracks/Secret of Fire - Final Text.mp3" id="5_3veri"]
 [ext_resource type="PackedScene" uid="uid://d0miinwi6udhw" path="res://Scenes/credit.tscn" id="5_e5cj1"]
 [ext_resource type="PackedScene" uid="uid://bbs3qmsd2cfuo" path="res://Scenes/backstory_screen.tscn" id="6_yy1l3"]
+[ext_resource type="PackedScene" uid="uid://dtobu3sqw2xv1" path="res://Scenes/pause.tscn" id="7_c6yph"]
+[ext_resource type="PackedScene" uid="uid://cbhr66lkch43r" path="res://Scenes/hint.tscn" id="8_oppii"]
+[ext_resource type="PackedScene" uid="uid://mh06ck6umn6t" path="res://Scenes/hint_overall.tscn" id="9_qasc2"]
+[ext_resource type="PackedScene" uid="uid://j6lcw3xxrle5" path="res://Scenes/hint_order.tscn" id="10_w4kgt"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_ofvdv")
@@ -15,4 +19,8 @@ game_over_scene = ExtResource("3_b4gvp")
 intro_scene = ExtResource("4_axq4h")
 credit_scene = ExtResource("5_e5cj1")
 backstory_scene = ExtResource("6_yy1l3")
+pause_scene = ExtResource("7_c6yph")
+hint_scene = ExtResource("8_oppii")
+hint_overall_scene = ExtResource("9_qasc2")
+hint_order_scene = ExtResource("10_w4kgt")
 bg_music = ExtResource("5_3veri")

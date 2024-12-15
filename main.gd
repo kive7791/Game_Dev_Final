@@ -6,6 +6,10 @@ extends Node2D
 @export var intro_scene: PackedScene # Assign the Introduction scene in the editor
 @export var credit_scene: PackedScene # Assign the Credit scene in the editor
 @export var backstory_scene: PackedScene # Assign the Backstory scene in the editor
+@export var pause_scene: PackedScene # Assign the Pause scene in the editor
+@export var hint_scene: PackedScene # Assign the Hint scene in the editor
+@export var hint_overall_scene: PackedScene # Assign the Hint overall scene in the editor
+@export var hint_order_scene: PackedScene # Assign the Hint order scene in the editor
 @export var level_scenes: Array[PackedScene] = [
 	preload("res://Scenes/level_1.tscn")
 ]
@@ -105,6 +109,8 @@ func mine_change_scene(new_scene_path: PackedScene):
 	current_scene.connect("start_backstory_game", Callable(self, "_on_backstory_game"))
 	current_scene.connect("credit_game", Callable(self, "_on_credit_game"))
 	current_scene.connect("quit_game", Callable(self, "_on_quit_game"))
+	current_scene.connect("pause_game", Callable(self, "_on_pause_game"))
+	current_scene.connect("restart_game", Callable(self, "_on_restart_game"))
 	
 	print("Current stack:", GlobalPriorScene.scene_history)
 
@@ -128,14 +134,68 @@ func load_level(level_index: int) -> void:
 	# Load the level scene
 	current_scene = level_scenes[level_index].instantiate()
 	add_child(current_scene)
+	GlobalPriorScene.push_scene(level_scenes[level_index])
+	print("Pushed level_scene")
+	
+	current_scene.connect("pause_game", Callable(self, "_on_pause_game"))
+	current_scene.connect("lost_timeout_game", Callable(self, "_on_lost_timeout_game"))
 
-func _on_puzzle_solved() -> void:
-	print("Game _on_puzzle_solved")
-	#print("Puzzle Solved! Remaining puzzle: ", puzzle_remaining)
+func _on_pause_game() -> void:
+	print("Game _on_pause_game")
+	if current_scene:
+		current_scene.queue_free()
+	current_scene = pause_scene.instantiate()
+	add_child(current_scene)
+	
+	current_scene.connect("back_game", Callable(self, "_on_back_game"))
+	current_scene.connect("quit_game", Callable(self, "_on_quit_game"))
+	current_scene.connect("hint_game", Callable(self, "_on_hint_game"))
+	current_scene.connect("restart_game", Callable(self, "_on_restart_game"))
 
-func _on_end_time() -> void:
-	print("Game _on_end_time")
-	end_game("YOU LOST!")
+func _on_hint_game() -> void:
+	print("Game _on_hint_game")
+	if current_scene:
+		current_scene.queue_free()
+	current_scene = hint_scene.instantiate()
+	add_child(current_scene)
+	
+	current_scene.connect("hint_1_game", Callable(self, "_on_hint_1_game"))
+	current_scene.connect("hint_2_game", Callable(self, "_on_hint_2_game"))
+	current_scene.connect("back_game", Callable(self, "_on_back_game"))
+
+# TODO add functionality of the hints
+# Hint to show all items in the room
+func _on_hint_1_game() -> void:
+	print("Game _on_hint_1_game")
+	if current_scene:
+		current_scene.queue_free()
+	current_scene = hint_overall_scene.instantiate()
+	add_child(current_scene)
+	
+	current_scene.connect("hint_1_game", Callable(self, "_on_hint_1_game"))
+	current_scene.connect("hint_2_game", Callable(self, "_on_hint_2_game"))
+	current_scene.connect("back_game", Callable(self, "_on_back_game"))
+	
+
+# Hint to show items order
+func _on_hint_2_game() -> void:
+	print("Game _on_hint_2_game")
+	if current_scene:
+		current_scene.queue_free()
+	current_scene = hint_order_scene.instantiate()
+	add_child(current_scene)
+	
+	current_scene.connect("hint_1_game", Callable(self, "_on_hint_1_game"))
+	current_scene.connect("hint_2_game", Callable(self, "_on_hint_2_game"))
+	current_scene.connect("back_game", Callable(self, "_on_back_game"))
+
+#func _on_puzzle_solved() -> void:
+	#print("Game _on_puzzle_solved")
+	##print("Puzzle Solved! Remaining puzzle: ", puzzle_remaining)
+#
+#func _on_end_time() -> void:
+	#print("Game _on_end_time")
+	#end_game("YOU LOST!")
 
 func cleanup() -> void:
 	print("Game cleanup")
@@ -149,15 +209,27 @@ func cleanup() -> void:
 		print("Freeing level:", level.name)
 		level.queue_free()
 
-func end_game(message: String) -> void:
-	print("Game _end_game")
-	show_game_over(message)
-
-func show_game_over(message: String) -> void:
-	print("Game _show_game_over")
+func _on_lost_timeout_game() -> void:
+	print("Game _on_lost_timeout_game")
 	if current_scene:
 		current_scene.queue_free()
 	current_scene = game_over_scene.instantiate()
 	add_child(current_scene)
+	
+	current_scene.connect("credit_game", Callable(self, "_on_credit_game"))
 	current_scene.connect("restart_game", Callable(self, "_on_restart_game"))
 	current_scene.connect("quit_game", Callable(self, "_on_quit_game"))
+
+
+#func end_game(message: String) -> void:
+	#print("Game _end_game")
+	#show_game_over(message)
+#
+#func show_game_over(message: String) -> void:
+	#print("Game _show_game_over")
+	#if current_scene:
+		#current_scene.queue_free()
+	#current_scene = game_over_scene.instantiate()
+	#add_child(current_scene)
+	#current_scene.connect("restart_game", Callable(self, "_on_restart_game"))
+	#current_scene.connect("quit_game", Callable(self, "_on_quit_game"))

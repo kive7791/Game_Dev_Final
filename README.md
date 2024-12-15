@@ -44,14 +44,14 @@ The game features a **choice-and-consequence system**:
   - Visualize items in a **text box-style inventory** at the bottom of the screen.
   - Add items to the inventory dynamically as they are discovered.
 
-### Level 1
-- **UI Features**:
-  - Add a **Pause Button** at the top-right corner.
+### Hint Screen
+- Update:
+  - **Overall hint Button**: Proper Image.
+  - **Order hint Button**: Proper Image.
 
-### Pause Screen
-- Include:
-  - **Hint Button**: Provides a gameplay hint.
-  - **Quit Button**: Exits the game.
+### Back Buttons within the level
+- Update:
+  - Save mechanic so not restarting.
 
 ### Item Combination
 - **Mechanics**:
@@ -59,8 +59,6 @@ The game features a **choice-and-consequence system**:
   - Incorrect combinations penalize the player by reducing available time.
 
 ### Game Ending Scenarios
-- **Timer**: Set to 5 minutes for the main gameplay.
-  - **Time Runs Out**: Player loses.
 - **Item Order**:
   - **Correct Sequence**: Player wins.
   - **Incorrect or Partial Sequence**: Player loses.
@@ -71,18 +69,17 @@ The game features a **choice-and-consequence system**:
 
 ### Core Features
 - [ ] Develop inventory system (Visuals) to display collected items.
-- [ ] Implement pause screen with hint and quit functionality.
+- [ ] Update the hints screens with the proper images
+- [ ] Fix back button to save the state of the game
 - [ ] Create item combination mechanics.
 
 ### Level 1 Design
-- [ ] Add a pause button in the top-right corner.
-- [ ] Program item interactions and glowing hints.
+- [ ] Program item interactions.
 
 ### Player
 - [ ] Fix going out of bounds 
 
 ### End Game Logic
-- [ ] Implement timer-based game-over condition.
 - [ ] Create a recursive function to check:
   - If the player has all required items.
   - If the items are in the correct order.

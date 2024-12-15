@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://mh06ck6umn6t"]
+
+[ext_resource type="Script" path="res://Scripts/hint_overall.gd" id="1_wephl"]
+[ext_resource type="Texture2D" uid="uid://c6wvnu2f2m20s" path="res://Assets/Background/bedroom.png" id="4_yxd01"]
+[ext_resource type="FontFile" uid="uid://5uxrw0gyq3k3" path="res://Assets/Fonts/Titles.otf" id="5_da42u"]
+
+[node name="hint_overall" type="Node2D"]
+script = ExtResource("1_wephl")
+
+[node name="Background" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(576.5, 324.5)
+scale = Vector2(0.281006, 0.280816)
+texture = ExtResource("4_yxd01")
+
+[node name="Back" type="Button" parent="."]
+z_index = 1
+offset_left = 916.0
+offset_top = 23.0
+offset_right = 1120.0
+offset_bottom = 76.0
+theme_override_fonts/font = ExtResource("5_da42u")
+theme_override_font_sizes/font_size = 50
+text = "Back to game"
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+offset_left = 135.0
+offset_top = 286.0
+offset_right = 1050.0
+offset_bottom = 331.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.788235, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_da42u")
+theme_override_font_sizes/font_size = 50
+text = "This will be updated with red circles everywhere an item lies."
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

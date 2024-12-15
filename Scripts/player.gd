@@ -14,9 +14,6 @@ signal game_started
 @export var max_jump: int = 2 # max jumps allowed
 @export var reset_position: Vector2 = Vector2(234, 621) # Beginning player position
 
-# Game 
-var started = false 
-var day_timer: float = 0.0
 
 # Player health
 var health: int = 10
@@ -29,6 +26,8 @@ var snap_position: Vector2
 var jump_count: int = 0  # number of jumps
 var navigation_region: NavigationRegion2D = null
 var margin = 5
+var has_moved: bool = false
+var path: PackedVector2Array
 
 enum{IDLE, JUMP, WALK, INTERACT, STOP} # could change
 
@@ -45,27 +44,26 @@ func _ready():
 	add_to_group("Player")
 	change_state(IDLE)
 	destination = position
-	day_timer = 0.0  # Reset timer at start
 
 func _process(delta):
-	var distance_to_destination = position.distance_to(destination)
-	if (distance_to_destination != destination.x) and distance_to_destination > margin:
-		distance = Vector2(destination - position)
-		# Check if the character is close enough to stop
-		if distance_to_destination > margin:
-			# Move towards destination
-			velocity = distance.normalized() * move_speed
-			change_state(WALK)
-			move_and_slide()
-	else:
-		# Stip and reset
-		velocity = Vector2.ZERO
-		position = destination # Snap to destination to avoid overshooting
-		change_state(IDLE)
+	match state:
+		IDLE:
+			pass
+		WALK:
+			move_along_path()
+
+func move_along_path():
+	var starting_point = position
 	
-	if velocity.length() > 0:
-		# Update sprite orientation based on movement direction
-		update_sprite_direction(destination, position)
+	_draw()
+	pass
+	
+
+func _draw():
+	# Visualize the path for debugging
+	if path.size() > 1:
+		for i in range(path.size() - 1):
+			draw_line(path[i], path[i + 1], Color.GREEN, 2)
 
 func _input(event: InputEvent) -> void:
 	# Handle the user input
@@ -101,7 +99,7 @@ func _on_item_collected(body):
 		# Play sound or visual feedback here
 
 func change_state(newState):
-	#DO NOTHING
+	# DO NOTHING
 	if state == newState:
 		return 
 	
@@ -120,3 +118,29 @@ func change_state(newState):
 			print("Interacted!!")
 		STOP:
 			$AnimatedSprite2D.stop()
+
+# old code for player movement:
+#func _old(delta):
+	#var distance_to_destination = position.distance_to(destination)
+	#if (distance_to_destination != destination.x) and distance_to_destination > margin:
+		#distance = Vector2(destination - position)
+		## Check if the character is close enough to stop
+		#if distance_to_destination > margin:
+			 ## Check if the player has moved for the first time
+			#if distance != Vector2.ZERO and not has_moved:
+				#has_moved = true
+				#emit_signal("game_started")  # Emit the signal only once
+				#print("Player has started moving. Signal emitted.")
+			## Move towards destination
+			#velocity = distance.normalized() * move_speed
+			#change_state(WALK)
+			#move_and_slide()
+	#else:
+		## Stip and reset
+		#velocity = Vector2.ZERO
+		#position = destination # Snap to destination to avoid overshooting
+		#change_state(IDLE)
+	#
+	#if velocity.length() > 0:
+		## Update sprite orientation based on movement direction
+		#update_sprite_direction(destination, position)
