@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://vmq07g76rgy8"]
+
+[ext_resource type="Script" path="res://Scripts/rug_event.gd" id="1_cocy8"]
+[ext_resource type="Texture2D" uid="uid://b326le4ivedos" path="res://Assets/Collectable/bedroom/rug_bedroom.png" id="2_7rw62"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0inf"]
+size = Vector2(275.207, 37.8952)
+
+[node name="rug_event" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_cocy8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(581.5, 323.5)
+scale = Vector2(0.283936, 0.284288)
+texture = ExtResource("2_7rw62")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(543.631, 547.006)
+rotation = -3.16778
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_f0inf")

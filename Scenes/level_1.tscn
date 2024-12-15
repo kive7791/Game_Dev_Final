@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0nry1xbgnpff"]
+[gd_scene load_steps=12 format=3 uid="uid://d0nry1xbgnpff"]
 
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_xkot6"]
 [ext_resource type="PackedScene" uid="uid://cxhmbcu2y6onb" path="res://Scenes/player.tscn" id="2_elqvt"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://rdy6f15stj8w" path="res://Scenes/crystal_collectable.tscn" id="4_q5lny"]
 [ext_resource type="FontFile" uid="uid://dakmbpjfr0nm2" path="res://Assets/Fonts/Titles.otf" id="5_fyhvu"]
 [ext_resource type="FontFile" uid="uid://bqxe1amm4ygef" path="res://Assets/Fonts/Timer.otf" id="6_5fpjs"]
+[ext_resource type="PackedScene" uid="uid://vmq07g76rgy8" path="res://Scenes/rug_event.tscn" id="6_67doa"]
+[ext_resource type="PackedScene" uid="uid://bj8c05o8gwdl8" path="res://Scenes/paper_collectable.tscn" id="7_e36fo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nv4m1"]
 vertices = PackedVector2Array(437, 562, 716.609, 570.344, 850.398, 641.313, 637.922, 643, 170.398, 643.953, 243.711, 562.023, 274.422, 562, 437, 528.891, 711.992, 526.094, 248.117, 540.398, 240.32, 543.383)
@@ -36,6 +38,14 @@ position = Vector2(-8, 3)
 [node name="Crystal" parent="." instance=ExtResource("4_q5lny")]
 z_index = 1
 position = Vector2(553, 568)
+
+[node name="rug_event" parent="." instance=ExtResource("6_67doa")]
+z_index = 1
+
+[node name="paper_collectable" parent="." instance=ExtResource("7_e36fo")]
+visible = false
+z_index = 1
+position = Vector2(0, -3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 323)
@@ -67,7 +77,7 @@ theme_override_font_sizes/font_size = 50
 text = "Menu"
 
 [node name="GameplayTimer" type="Timer" parent="."]
-wait_time = 153.0
+wait_time = 300.0
 one_shot = true
 
 [node name="TimerLabel" type="Label" parent="."]
@@ -86,3 +96,4 @@ horizontal_alignment = 1
 [connection signal="timeout" from="GameplayTimer" to="." method="_on_gameplay_timer_timeout"]
 
 [editable path="light_event"]
+[editable path="rug_event"]

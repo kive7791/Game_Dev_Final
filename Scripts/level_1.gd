@@ -12,12 +12,16 @@ enum BackgroundState { DAY, NIGHT, NIGHTWLIGHTS }
 @onready var Collectable: Area2D = $Crystal
 @onready var Lights: Area2D = $light_event
 @onready var Lights_Sprite: Sprite2D = $light_event/Sprite2D
+@onready var Rug: Area2D = $rug_event
+@onready var Rug_Sprite: Sprite2D = $rug_event/Sprite2D
+@onready var Paper: Area2D = $paper_collectable
 @onready var background: Sprite2D = $Background/Sprite2D
-#@onready var light_button = $Background/LightsButton
 
 var new_path: PackedVector2Array = PackedVector2Array()
 var current_state = BackgroundState.DAY
 var lights_on = false  # Keeps track of light state
+var rug_pulled = false # Keep track of rug pulled
+var rug_pulled_count = 0 # keep tack of how many times the rug is pulled
 
 func _ready() -> void:
 	$GameplayTimer.stop()  # Ensure timer is stopped initially
@@ -25,9 +29,11 @@ func _ready() -> void:
 	Player.connect("game_started", Callable(self, "_on_level_game_started"))
 	$GameplayTimer.connect("timeout", Callable(self, "_on_gameplay_timer_timeout"))
 	
-	#Making a light button so I can check if it is being hit
+	# Making a item events so I can check if it is being clicked on
 	Lights.visible = false
 	Lights.connect("light_event", Callable(self, "_on_light_event_triggered"))
+	Rug.connect("rug_event", Callable(self, "_on_rug_event_triggered"))
+	Paper.visible = false
 
 func _input(event: InputEvent) -> void:
 	# TODO Defined area for the player to move
@@ -113,6 +119,20 @@ func _on_light_event_triggered() -> void:
 			print("Lights turned OFF!")
 			Lights_Sprite.texture = preload("res://Assets/Collectable/NoLight/lights_bedroom_nolight.png")  # Lights off Night background
 			change_background_state(BackgroundState.NIGHT)
+
+func _on_rug_event_triggered() -> void:
+	if current_state == BackgroundState.DAY:
+		rug_pulled = !rug_pulled  # Toggle the rug state
+		if rug_pulled:
+			# Allow for paper to be seen
+			print("Rug clicked, pull")
+			Rug_Sprite.texture = preload("res://Assets/Collectable/bedroom/Rug_pulled_bedroom.png")
+			if rug_pulled_count < 1:
+				Paper.visible = true
+		else:
+			Rug_Sprite.texture = preload("res://Assets/Collectable/bedroom/rug_bedroom.png")
+	else:
+		print("Sorry, their is an invisible force, not allowing for this")
 
 func _on_crystal_collectable_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if !Input.is_action_pressed("ui_left_mouseclick"):

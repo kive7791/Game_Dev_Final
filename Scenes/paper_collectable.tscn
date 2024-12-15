@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj8c05o8gwdl8"]
+
+[ext_resource type="Script" path="res://Scripts/paper_collectable.gd" id="1_ya6e3"]
+[ext_resource type="Texture2D" uid="uid://bp0t3jy2cwbwi" path="res://Assets/Collectable/bedroom/paper_bedroom.png" id="2_nev76"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5lpl1"]
+size = Vector2(30.3359, 16)
+
+[node name="paper_collectable" type="Area2D" groups=["Collectible"]]
+collision_layer = 2
+script = ExtResource("1_ya6e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(570, 328)
+scale = Vector2(0.284, 0.284)
+texture = ExtResource("2_nev76")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(661.832, 546)
+shape = SubResource("RectangleShape2D_5lpl1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
