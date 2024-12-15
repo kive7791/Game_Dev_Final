@@ -39,20 +39,6 @@ The game features a **choice-and-consequence system**:
 
 ## Development Roadmap
 
-### Inventory System
-- **Design**:
-  - Visualize items in a **text box-style inventory** at the bottom of the screen.
-  - Add items to the inventory dynamically as they are discovered.
-
-### Hint Screen
-- Update:
-  - **Overall hint Button**: Proper Image.
-  - **Order hint Button**: Proper Image.
-
-### Back Buttons within the level
-- Update:
-  - Save mechanic so not restarting.
-
 ### Item Combination
 - **Mechanics**:
   - Correct combinations unlock story progression.
@@ -68,13 +54,7 @@ The game features a **choice-and-consequence system**:
 ## To-Do List
 
 ### Core Features
-- [ ] Develop inventory system (Visuals) to display collected items.
 - [ ] Update the hints screens with the proper images
-- [ ] Fix back button to save the state of the game
-- [ ] Create item combination mechanics.
-
-### Level 1 Design
-- [ ] Program item interactions.
 
 ### End Game Logic
 - [ ] Create a recursive function to check:

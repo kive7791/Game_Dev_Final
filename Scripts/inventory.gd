@@ -64,6 +64,18 @@ func _on_item_clicked(event: InputEvent, item_name: String):
 		highlight_item()
 		emit_signal("item_selected", item_name)
 
+func item_index(item_name: String) -> int:
+	print("[inventory.gd:42] item_index() called")
+	var count: int = 1
+	for item in inventory_items:
+		print("inventory item ", item)
+		if item.name == item_name:
+			print("inventory item ", item.name)
+			break
+		count += 1
+	print("inventory ", count)
+	return count
+
 func highlight_item():
 	print("[inventory.gd:42] highlight_item() called")
 	# Reset highlights for all items

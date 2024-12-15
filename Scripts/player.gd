@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 signal game_started
+signal correct_items_collected
+signal wrong_items_collected
 signal crystal_collected(body) # signal - crystal colleced for game
 
 # Resource: Youtube: Kilo Galaxia, Point & Click Adventure Game with Godot Tutorial - Advanced Character Motion
@@ -16,6 +18,7 @@ signal crystal_collected(body) # signal - crystal colleced for game
 # Player health
 var health: int = 10
 var process_input = true
+var end_flag: bool = false
 
 # Player movement
 var destination: Vector2 = Vector2.ZERO
@@ -66,6 +69,7 @@ func set_inventory_reference():
 	print("player: inventory: ", inventory)
 
 func _process(delta):
+	check_inventory_for_end_game()
 	match state:
 		IDLE:
 			pass
@@ -103,6 +107,7 @@ func move_along_path(delta):
 	_draw()
 
 func _draw():
+	pass
 	# Visualize the path for debugging
 	if path.size() > 1:
 		for i in range(path.size() - 1):
@@ -220,18 +225,35 @@ func _on_collectable_item_clicked(item_name):
 
 # Example check for inventory completion
 func check_inventory_for_end_game():
-	print("player: check_inventory_for_end_game")
-	if "Red Crystal" in inventory and "Blue Crystal" in inventory:
-		trigger_true_ending()
-	else:
-		trigger_bad_ending()
+	var correct_order = ["Crystal", "Paper", "Key"]
+	var index = 0
+	
+	if end_flag:
+		return
+
+	print("player: check_inventory_for_end_game_state")
+	if inventory_panel.has_method("item_index"):  # Check if the method exists
+		index = inventory_panel.item_index("Cyrstal")  # Directly call the method on the Player
+		print("Cyrstal Index: ", index)
+		if index == 4:
+			index = inventory_panel.item_index("key_collectable")  # Directly call the method on the Player
+			if index == 3:
+				index = inventory_panel.item_index("paper_collectable")  # Directly call the method on the Player
+				if index == 2:
+					trigger_true_ending()
+		if inventory_panel.inventory_items.size() > 2:
+			trigger_bad_ending()
 
 func trigger_true_ending():
 	print("Congratulations! You found all items!")
+	emit_signal("correct_items_collected")
+	end_flag=true
 	# Transition to true ending scene or display message
 
 func trigger_bad_ending():
 	print("You missed some items...")
+	emit_signal("wrong_items_collected")
+	end_flag=true
 	# Transition to bad ending scene or display message
 
 # old code for player movement:

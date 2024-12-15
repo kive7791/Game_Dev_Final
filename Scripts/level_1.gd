@@ -2,6 +2,8 @@ extends Node2D
 
 signal pause_game
 signal lost_timeout_game
+signal correct_items_collected
+signal wrong_items_collected
 
 enum BackgroundState { DAY, NIGHT, NIGHTWLIGHTS }
 
@@ -28,6 +30,8 @@ func _ready() -> void:
 	$GameplayTimer.stop()  # Ensure timer is stopped initially
 	$GameplayTimer.one_shot = true  # Timer will not loop
 	Player.connect("game_started", Callable(self, "_on_level_game_started"))
+	Player.connect("correct_items_collected", Callable(self, "_on_level_correct_started"))
+	Player.connect("wrong_items_collected", Callable(self, "_on_level_wrong_started"))
 	$GameplayTimer.connect("timeout", Callable(self, "_on_gameplay_timer_timeout"))
 	
 	# Making a item events so I can check if it is being clicked on
@@ -106,6 +110,14 @@ func change_background_state(new_state):
 func _on_gameplay_timer_timeout() -> void:
 	print("Time ran out! Player loses.")
 	emit_signal("lost_timeout_game")
+
+func _on_level_correct_started() -> void:
+	print("level_1_scene on_correct_items")
+	emit_signal("correct_items_collected")
+
+func _on_level_wrong_started() -> void:
+	print("level_1_scene on_correct_items")
+	emit_signal("wrong_items_collected")
 
 func _on_pause_pressed() -> void:
 	print("level_1_screen _on_pause_pressed")

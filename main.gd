@@ -141,6 +141,8 @@ func load_level(level_index: int) -> void:
 	GlobalPriorScene.push_scene(level_scenes[level_index])
 	print("Pushed level_scene")
 
+	current_scene.connect("correct_items_collected", Callable(self, "show_game_winner_over"))
+	current_scene.connect("wrong_items_collected", Callable(self, "show_game_loser_over"))
 	current_scene.connect("pause_game", Callable(self, "_on_pause_game"))
 	current_scene.connect("lost_timeout_game", Callable(self, "_on_lost_timeout_game"))
 
@@ -225,16 +227,24 @@ func _on_lost_timeout_game() -> void:
 	current_scene.connect("restart_game", Callable(self, "_on_restart_game"))
 	current_scene.connect("quit_game", Callable(self, "_on_quit_game"))
 
+func end_game(message: String) -> void:
+	print("Game _end_game")
+	show_game_over(message)
 
-#func end_game(message: String) -> void:
-	#print("Game _end_game")
-	#show_game_over(message)
-#
-#func show_game_over(message: String) -> void:
-	#print("Game _show_game_over")
-	#if current_scene:
-		#current_scene.queue_free()
-	#current_scene = game_over_scene.instantiate()
-	#add_child(current_scene)
-	#current_scene.connect("restart_game", Callable(self, "_on_restart_game"))
-	#current_scene.connect("quit_game", Callable(self, "_on_quit_game"))
+func show_game_over(message: String) -> void:
+	print("Game _show_game_over")
+	if current_scene:
+		current_scene.queue_free()
+	current_scene = game_over_scene.instantiate()
+	add_child(current_scene)
+	if current_scene.has_method("set_message"):
+		current_scene.set_message(message)
+	current_scene.connect("credit_game", Callable(self, "_on_credit_game"))
+	current_scene.connect("restart_game", Callable(self, "_on_restart_game"))
+	current_scene.connect("quit_game", Callable(self, "_on_quit_game"))
+
+func show_game_winner_over():
+	show_game_over("WINNER!")
+
+func show_game_loser_over():
+	show_game_over("LOSER...")

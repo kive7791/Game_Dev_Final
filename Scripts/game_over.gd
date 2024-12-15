@@ -15,9 +15,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func set_message(message: String, score: int) -> void:
+func set_message(message: String) -> void:
 	title.text = message
-	$ScoreLabel.text = "Score: %d" % score
 	title.modulate = Color.DARK_GREEN
 	if not message.contains("WIN"):
 		title.modulate = Color.DARK_RED
