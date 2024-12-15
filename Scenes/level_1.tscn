@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0nry1xbgnpff"]
+[gd_scene load_steps=14 format=3 uid="uid://d0nry1xbgnpff"]
 
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_xkot6"]
 [ext_resource type="PackedScene" uid="uid://cxhmbcu2y6onb" path="res://Scenes/player.tscn" id="2_elqvt"]
@@ -10,6 +10,8 @@
 [ext_resource type="FontFile" uid="uid://bqxe1amm4ygef" path="res://Assets/Fonts/Timer.otf" id="6_5fpjs"]
 [ext_resource type="PackedScene" uid="uid://vmq07g76rgy8" path="res://Scenes/rug_event.tscn" id="6_67doa"]
 [ext_resource type="PackedScene" uid="uid://bj8c05o8gwdl8" path="res://Scenes/paper_collectable.tscn" id="7_e36fo"]
+[ext_resource type="PackedScene" uid="uid://dewbnyuyo57eo" path="res://Scenes/pic_event.tscn" id="8_hgg5i"]
+[ext_resource type="PackedScene" uid="uid://culo8wh1jafbc" path="res://Scenes/key_collectable.tscn" id="9_yy38j"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nv4m1"]
 vertices = PackedVector2Array(437, 562, 716.609, 570.344, 850.398, 641.313, 637.922, 643, 170.398, 643.953, 243.711, 562.023, 274.422, 562, 437, 528.891, 711.992, 526.094, 248.117, 540.398, 240.32, 543.383)
@@ -20,7 +22,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(148, 654, 233, 559, 229
 script = ExtResource("1_xkot6")
 
 [node name="InventoryPanel" parent="." instance=ExtResource("2_hju6f")]
-z_index = 2
+z_index = 3
 offset_left = 814.0
 offset_top = 104.0
 offset_right = 814.0
@@ -28,7 +30,7 @@ offset_bottom = 104.0
 
 [node name="Player" parent="." instance=ExtResource("2_elqvt")]
 z_index = 3
-position = Vector2(276, 584)
+position = Vector2(292.795, 625.068)
 scale = Vector2(2, 2)
 
 [node name="light_event" parent="." instance=ExtResource("4_gpd2m")]
@@ -46,6 +48,14 @@ z_index = 1
 visible = false
 z_index = 2
 position = Vector2(0, -3)
+
+[node name="pic_event" parent="." instance=ExtResource("8_hgg5i")]
+z_index = 1
+
+[node name="key_collectable" parent="." instance=ExtResource("9_yy38j")]
+visible = false
+z_index = 3
+position = Vector2(9.55933, -16.3277)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 323)
@@ -97,3 +107,4 @@ horizontal_alignment = 1
 
 [editable path="light_event"]
 [editable path="rug_event"]
+[editable path="pic_event"]

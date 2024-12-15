@@ -15,6 +15,9 @@ enum BackgroundState { DAY, NIGHT, NIGHTWLIGHTS }
 @onready var Rug: Area2D = $rug_event
 @onready var Rug_Sprite: Sprite2D = $rug_event/Sprite2D
 @onready var Paper: Area2D = $paper_collectable
+@onready var Pic: Area2D = $pic_event
+@onready var Pic_Sprite: Sprite2D = $pic_event/Sprite2D
+@onready var Blue_key: Area2D = $key_collectable
 @onready var background: Sprite2D = $Background/Sprite2D
 
 var new_path: PackedVector2Array = PackedVector2Array()
@@ -32,6 +35,8 @@ func _ready() -> void:
 	Lights.connect("light_event", Callable(self, "_on_light_event_triggered"))
 	Rug.connect("rug_event", Callable(self, "_on_rug_event_triggered"))
 	Paper.visible = false
+	Pic.connect("pic_event", Callable(self, "_on_pic_event_triggered"))
+	Blue_key.visible = false
 
 func _input(event: InputEvent) -> void:
 	# TODO Defined area for the player to move
@@ -126,6 +131,18 @@ func _on_rug_event_triggered() -> void:
 			Paper.visible = true
 		else:
 			print("Paper collected already")
+	else:
+		print("Sorry, their is an invisible force, not allowing for this")
+
+func _on_pic_event_triggered() -> void:
+	if current_state == BackgroundState.DAY:
+		print("Picture clicked, pull down. Is key viible: ", Blue_key.visible)
+		Pic_Sprite.texture = preload("res://Assets/Collectable/bedroom/pic_moved_bedroom.png")
+		if is_instance_valid(Blue_key):
+			Blue_key.visible = true
+			print("Here", Blue_key.visible)
+		else:
+			print("Key collected already")
 	else:
 		print("Sorry, their is an invisible force, not allowing for this")
 

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dewbnyuyo57eo"]
+
+[ext_resource type="Script" path="res://Scripts/pic_event.gd" id="1_q1tas"]
+[ext_resource type="Texture2D" uid="uid://crs40jg5ydrlm" path="res://Assets/Collectable/bedroom/picture2_bedroom.png" id="2_wj64v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0inf"]
+size = Vector2(26.9907, 276.372)
+
+[node name="pic_event" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_q1tas")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(581.5, 323.5)
+scale = Vector2(0.283936, 0.284288)
+texture = ExtResource("2_wj64v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(253.438, 308.65)
+rotation = 3.11541
+shape = SubResource("RectangleShape2D_f0inf")
