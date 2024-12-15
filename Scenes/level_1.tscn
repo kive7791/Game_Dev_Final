@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_xkot6"]
 [ext_resource type="PackedScene" uid="uid://cxhmbcu2y6onb" path="res://Scenes/player.tscn" id="2_elqvt"]
+[ext_resource type="PackedScene" uid="uid://c3ihpiaq710y5" path="res://Scenes/inventory.tscn" id="2_hju6f"]
 [ext_resource type="Texture2D" uid="uid://c6wvnu2f2m20s" path="res://Assets/Background/bedroom.png" id="3_gi6xq"]
 [ext_resource type="PackedScene" uid="uid://rdy6f15stj8w" path="res://Scenes/collectable.tscn" id="4_q5lny"]
 [ext_resource type="FontFile" uid="uid://5uxrw0gyq3k3" path="res://Assets/Fonts/Titles.otf" id="5_fyhvu"]
@@ -15,12 +16,18 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(148, 654, 233, 559, 229
 [node name="level_1" type="Node2D"]
 script = ExtResource("1_xkot6")
 
+[node name="InventoryPanel" parent="." instance=ExtResource("2_hju6f")]
+offset_left = 1037.0
+offset_top = 499.0
+offset_right = 1037.0
+offset_bottom = 499.0
+
 [node name="Player" parent="." instance=ExtResource("2_elqvt")]
 z_index = 1
 position = Vector2(252.13, 604.274)
 scale = Vector2(2, 2)
 
-[node name="crystal_collectable" parent="." instance=ExtResource("4_q5lny")]
+[node name="Crystal" parent="." instance=ExtResource("4_q5lny")]
 z_index = 1
 position = Vector2(423.763, 594.739)
 
