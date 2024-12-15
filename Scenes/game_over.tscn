@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://v6s7fglhx2i4"]
 
 [ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_tjcc2"]
-[ext_resource type="FontFile" uid="uid://bgl0xeuk5pooi" path="res://Assets/Fonts/Titles.otf" id="2_umkio"]
-[ext_resource type="Texture2D" uid="uid://b20ntr6a35gam" path="res://Assets/Background/bedroom_nolight.png" id="3_awj16"]
+[ext_resource type="FontFile" uid="uid://dakmbpjfr0nm2" path="res://Assets/Fonts/Titles.otf" id="2_umkio"]
+[ext_resource type="Texture2D" uid="uid://cl25i7foknmep" path="res://Assets/Background/bedroom_nolight.png" id="3_awj16"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6bb"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -100,4 +100,4 @@ texture = ExtResource("3_awj16")
 
 [connection signal="pressed" from="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer/CreditsButton2" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="GameOverUI/PanelContainer/Rows/CenterContainer/VBoxContainer/CreditsButton2" to="." method="_on_credits_pressed"]

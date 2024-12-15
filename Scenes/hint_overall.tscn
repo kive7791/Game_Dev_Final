@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://mh06ck6umn6t"]
 
 [ext_resource type="Script" path="res://Scripts/hint_overall.gd" id="1_wephl"]
-[ext_resource type="Texture2D" uid="uid://q5005jvj3jms" path="res://Assets/Background/bedroom.png" id="4_yxd01"]
-[ext_resource type="FontFile" uid="uid://bgl0xeuk5pooi" path="res://Assets/Fonts/Titles.otf" id="5_da42u"]
+[ext_resource type="Texture2D" uid="uid://dtgsu1i0fhspe" path="res://Assets/Background/bedroom.png" id="4_yxd01"]
+[ext_resource type="FontFile" uid="uid://dakmbpjfr0nm2" path="res://Assets/Fonts/Titles.otf" id="5_da42u"]
 
 [node name="hint_overall" type="Node2D"]
 script = ExtResource("1_wephl")
@@ -26,15 +26,54 @@ text = "Back to game"
 
 [node name="Label" type="Label" parent="."]
 z_index = 1
-offset_left = 135.0
-offset_top = 286.0
-offset_right = 1050.0
-offset_bottom = 331.0
+offset_left = 434.0
+offset_top = 223.0
+offset_right = 744.0
+offset_bottom = 268.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.788235, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_da42u")
 theme_override_font_sizes/font_size = 50
-text = "This will be updated with red circles everywhere an item lies."
+text = "Where are the items?"
+
+[node name="Label2" type="Label" parent="."]
+z_index = 1
+offset_left = 531.0
+offset_top = 576.0
+offset_right = 595.0
+offset_bottom = 621.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.788235, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_da42u")
+theme_override_font_sizes/font_size = 50
+text = "Here"
+
+[node name="Label3" type="Label" parent="."]
+z_index = 1
+offset_left = 632.0
+offset_top = 513.0
+offset_right = 696.0
+offset_bottom = 558.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.788235, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_da42u")
+theme_override_font_sizes/font_size = 50
+text = "Here"
+
+[node name="Label4" type="Label" parent="."]
+z_index = 1
+offset_left = 227.0
+offset_top = 523.0
+offset_right = 291.0
+offset_bottom = 568.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.788235, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_da42u")
+theme_override_font_sizes/font_size = 50
+text = "Here"
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

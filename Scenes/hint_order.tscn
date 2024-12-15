@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://j6lcw3xxrle5"]
+[gd_scene load_steps=6 format=3 uid="uid://j6lcw3xxrle5"]
 
 [ext_resource type="Script" path="res://Scripts/hint_overall.gd" id="1_ul2sm"]
-[ext_resource type="Texture2D" uid="uid://0o40syppcr1q" path="res://Assets/Background/bedroom_light.png" id="2_26pmu"]
-[ext_resource type="FontFile" uid="uid://bgl0xeuk5pooi" path="res://Assets/Fonts/Titles.otf" id="3_oinss"]
+[ext_resource type="Texture2D" uid="uid://dhnigxslrfms2" path="res://Assets/Background/bedroom_light.png" id="2_26pmu"]
+[ext_resource type="FontFile" uid="uid://dakmbpjfr0nm2" path="res://Assets/Fonts/Titles.otf" id="3_oinss"]
+[ext_resource type="PackedScene" uid="uid://rdy6f15stj8w" path="res://Scenes/crystal_collectable.tscn" id="4_25sab"]
+[ext_resource type="PackedScene" uid="uid://culo8wh1jafbc" path="res://Scenes/key_collectable.tscn" id="5_225dn"]
 
 [node name="hint_overall" type="Node2D"]
 script = ExtResource("1_ul2sm")
@@ -25,16 +27,74 @@ theme_override_font_sizes/font_size = 50
 text = "Back to game"
 
 [node name="Label" type="Label" parent="."]
-z_index = 1
-offset_left = 135.0
-offset_top = 286.0
-offset_right = 1050.0
-offset_bottom = 331.0
+z_index = 2
+offset_left = 334.0
+offset_top = 174.0
+offset_right = 741.0
+offset_bottom = 219.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.788235, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_oinss")
 theme_override_font_sizes/font_size = 50
-text = "This will be updated with item list and what the order is."
+text = "What is the correct order?"
+
+[node name="Label2" type="Label" parent="."]
+z_index = 2
+offset_left = 528.0
+offset_top = 568.0
+offset_right = 600.0
+offset_bottom = 613.0
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_oinss")
+theme_override_font_sizes/font_size = 50
+text = "First"
+
+[node name="crystal_collectable" parent="." instance=ExtResource("4_25sab")]
+z_index = 1
+position = Vector2(563.912, 588.929)
+
+[node name="Label3" type="Label" parent="."]
+z_index = 2
+offset_left = 612.0
+offset_top = 510.0
+offset_right = 713.0
+offset_bottom = 555.0
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_oinss")
+theme_override_font_sizes/font_size = 50
+text = "Second"
+
+[node name="Label4" type="Label" parent="."]
+z_index = 2
+offset_left = 209.0
+offset_top = 521.0
+offset_right = 287.0
+offset_bottom = 566.0
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_oinss")
+theme_override_font_sizes/font_size = 50
+text = "Thrid"
+
+[node name="key_collectable" parent="." instance=ExtResource("5_225dn")]
+z_index = 1
+position = Vector2(246, 569)
+scale = Vector2(5, 5)
+
+[node name="Label5" type="Label" parent="."]
+z_index = 2
+offset_left = 903.0
+offset_top = 593.0
+offset_right = 1142.0
+offset_bottom = 638.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.788235, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_oinss")
+theme_override_font_sizes/font_size = 50
+text = "Not in the dark!"
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

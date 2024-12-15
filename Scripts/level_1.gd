@@ -16,6 +16,7 @@ enum BackgroundState { DAY, NIGHT, NIGHTWLIGHTS }
 @onready var Lights_Sprite: Sprite2D = $light_event/Sprite2D
 @onready var Rug: Area2D = $rug_event
 @onready var Rug_Sprite: Sprite2D = $rug_event/Sprite2D
+@onready var Rug_back_Sprite: Sprite2D = $rug_event/Sprite2D2
 @onready var Paper: Area2D = $Paper
 @onready var Pic: Area2D = $pic_event
 @onready var Pic_Sprite: Sprite2D = $pic_event/Sprite2D
@@ -90,6 +91,22 @@ func _process(delta):
 		# Check the timer and change the background state
 		if time_left <= 150 and current_state == BackgroundState.DAY:
 			Lights.visible = true
+			Rug.visible = false
+			Blue_key.visible = false
+			Pic.visible = false
+			Paper.visible = false
+			
+			if not is_visible_in_tree():
+				$rug_event/CollisionShape2D.disabled = true
+				$Key/CollisionShape2D.disabled = true
+				$Paper/CollisionShape2D.disabled = true
+				$pic_event/CollisionShape2D.disabled = true
+			else:
+				$rug_event/CollisionShape2D.disabled = false
+				$Key/CollisionShape2D.disabled = false
+				$Paper/CollisionShape2D.disabled = false
+				$pic_event/CollisionShape2D.disabled = false
+			
 			change_background_state(BackgroundState.NIGHT)
 
 func change_background_state(new_state):
@@ -129,10 +146,12 @@ func _on_light_event_triggered() -> void:
 		if lights_on:
 			print("Lights turned ON!")
 			Lights_Sprite.texture = preload("res://Assets/Collectable/Light/lights_bedroom_light.png")  # Light Night background 
+			Rug_back_Sprite.visible = false
 			change_background_state(BackgroundState.NIGHTWLIGHTS)
 		else:
 			print("Lights turned OFF!")
 			Lights_Sprite.texture = preload("res://Assets/Collectable/NoLight/lights_bedroom_nolight.png")  # Lights off Night background
+			Rug_back_Sprite.visible = false
 			change_background_state(BackgroundState.NIGHT)
 
 func _on_rug_event_triggered() -> void:

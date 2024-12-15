@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_xkot6"]
 [ext_resource type="PackedScene" uid="uid://cxhmbcu2y6onb" path="res://Scenes/player.tscn" id="2_elqvt"]
 [ext_resource type="PackedScene" uid="uid://c3ihpiaq710y5" path="res://Scenes/inventory.tscn" id="2_hju6f"]
-[ext_resource type="Texture2D" uid="uid://q5005jvj3jms" path="res://Assets/Background/bedroom.png" id="3_gi6xq"]
+[ext_resource type="Texture2D" uid="uid://dtgsu1i0fhspe" path="res://Assets/Background/bedroom.png" id="3_gi6xq"]
 [ext_resource type="PackedScene" uid="uid://2exyfhaarrf8" path="res://Scenes/light_event.tscn" id="4_gpd2m"]
 [ext_resource type="PackedScene" uid="uid://rdy6f15stj8w" path="res://Scenes/crystal_collectable.tscn" id="4_q5lny"]
-[ext_resource type="FontFile" uid="uid://bgl0xeuk5pooi" path="res://Assets/Fonts/Titles.otf" id="5_fyhvu"]
-[ext_resource type="FontFile" uid="uid://cii3m35vlemkk" path="res://Assets/Fonts/Timer.otf" id="6_5fpjs"]
+[ext_resource type="FontFile" uid="uid://dakmbpjfr0nm2" path="res://Assets/Fonts/Titles.otf" id="5_fyhvu"]
+[ext_resource type="FontFile" uid="uid://bqxe1amm4ygef" path="res://Assets/Fonts/Timer.otf" id="6_5fpjs"]
 [ext_resource type="PackedScene" uid="uid://vmq07g76rgy8" path="res://Scenes/rug_event.tscn" id="6_67doa"]
 [ext_resource type="PackedScene" uid="uid://bj8c05o8gwdl8" path="res://Scenes/paper_collectable.tscn" id="7_e36fo"]
 [ext_resource type="PackedScene" uid="uid://dewbnyuyo57eo" path="res://Scenes/pic_event.tscn" id="8_hgg5i"]
@@ -34,7 +34,7 @@ position = Vector2(292.795, 625.068)
 scale = Vector2(2, 2)
 
 [node name="light_event" parent="." instance=ExtResource("4_gpd2m")]
-z_index = 1
+z_index = 2
 position = Vector2(-8, 3)
 
 [node name="Crystal" parent="." instance=ExtResource("4_q5lny")]
@@ -56,6 +56,7 @@ z_index = 1
 [node name="Key" parent="." instance=ExtResource("9_yy38j")]
 z_index = 3
 position = Vector2(259, 544)
+scale = Vector2(4, 4)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 323)
@@ -87,7 +88,7 @@ theme_override_font_sizes/font_size = 50
 text = "Menu"
 
 [node name="GameplayTimer" type="Timer" parent="."]
-wait_time = 300.0
+wait_time = 153.0
 one_shot = true
 
 [node name="TimerLabel" type="Label" parent="."]
@@ -107,4 +108,6 @@ horizontal_alignment = 1
 
 [editable path="light_event"]
 [editable path="rug_event"]
+[editable path="Paper"]
 [editable path="pic_event"]
+[editable path="Key"]

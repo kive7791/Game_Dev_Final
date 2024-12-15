@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://v6s7fglhx2i4" path="res://Scenes/game_over.tscn" id="3_b4gvp"]
 [ext_resource type="PackedScene" uid="uid://cxhmbcu2y6onb" path="res://Scenes/player.tscn" id="3_kru70"]
 [ext_resource type="PackedScene" uid="uid://d4crvm8cercjp" path="res://Scenes/main_menu.tscn" id="4_axq4h"]
-[ext_resource type="AudioStream" uid="uid://dkra7j0gotgkq" path="res://Assets/SoundTracks/Secret of Fire - Final Text.mp3" id="5_3veri"]
+[ext_resource type="AudioStream" uid="uid://deehdm4s636u4" path="res://Assets/SoundTracks/Secret of Fire - Final Text.mp3" id="5_3veri"]
 [ext_resource type="PackedScene" uid="uid://d0miinwi6udhw" path="res://Scenes/credit.tscn" id="5_e5cj1"]
 [ext_resource type="PackedScene" uid="uid://bbs3qmsd2cfuo" path="res://Scenes/backstory_screen.tscn" id="6_yy1l3"]
 [ext_resource type="PackedScene" uid="uid://dtobu3sqw2xv1" path="res://Scenes/pause.tscn" id="7_c6yph"]

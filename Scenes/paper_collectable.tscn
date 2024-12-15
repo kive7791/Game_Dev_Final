@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bj8c05o8gwdl8"]
 
 [ext_resource type="Script" path="res://Scripts/paper_collectable.gd" id="1_ya6e3"]
-[ext_resource type="Texture2D" uid="uid://ck5h6y1cc44am" path="res://Assets/Collectable/bedroom/paper_bedroom.png" id="2_nev76"]
+[ext_resource type="Texture2D" uid="uid://b3vifn5on3n5c" path="res://Assets/Collectable/bedroom/paper_bedroom.png" id="2_nev76"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o5grf"]
 animations = [{

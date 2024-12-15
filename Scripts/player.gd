@@ -187,10 +187,11 @@ func _on_collectable_item_clicked(item_name):
 
 # Example check for inventory completion
 func check_inventory_for_end_game():
-	#var correct_order = ["Crystal", "Paper", "Key"]
+	var correct_order = ["Crystal", "Paper", "Key"]
 	var index = 0
 	
 	if end_flag:
+		print("Flag: ", end_flag)
 		return
 
 	#print("player: check_inventory_for_end_game_state")
@@ -198,22 +199,23 @@ func check_inventory_for_end_game():
 		index = inventory_panel.item_index("Cyrstal")  # Directly call the method on the Player
 		#print("Cyrstal Index: ", index)
 		if index == 4:
-			index = inventory_panel.item_index("key_collectable")  # Directly call the method on the Player
+			index = inventory_panel.item_index("Key")  # Directly call the method on the Player
 			if index == 3:
-				index = inventory_panel.item_index("paper_collectable")  # Directly call the method on the Player
+				index = inventory_panel.item_index("Paper")  # Directly call the method on the Player
 				if index == 2:
 					trigger_true_ending()
-		if inventory_panel.inventory_items.size() > 2:
+		if inventory_panel.inventory_items.size() > 2 and end_flag == false:
 			trigger_bad_ending()
 
 func trigger_true_ending():
-	print("Congratulations! You found all items!")
+	print("Congratulations! You found all items!", end_flag)
+	end_flag = true
+	print("new: ", end_flag)
 	emit_signal("correct_items_collected")
-	end_flag=true
 	# Transition to true ending scene or display message
 
 func trigger_bad_ending():
 	print("You missed some items...")
+	end_flag = true
 	emit_signal("wrong_items_collected")
-	end_flag=true
 	# Transition to bad ending scene or display message

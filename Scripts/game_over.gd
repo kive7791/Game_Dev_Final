@@ -6,6 +6,7 @@ extends Control
 # Define the signal
 signal restart_game
 signal quit_game
+signal credit_game
 
 func _ready() -> void:
 	print("game_over _ready")
@@ -29,6 +30,6 @@ func _on_quit_pressed() -> void:
 	print("game_over _on_quit_pressed")
 	emit_signal("quit_game")
 
-func _on_credits_button_pressed() -> void:
-	print("intro_screen _on_credits_pressed")
-	emit_signal("credits")
+func _on_credits_pressed() -> void:
+	print("game_over _on_credits_pressed")
+	emit_signal("credit_game")

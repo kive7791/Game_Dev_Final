@@ -76,4 +76,4 @@ The game features a **choice-and-consequence system**:
 ## Credits
 - Fonts: *Salamahtype*, *Eunice*, *Allouse Studio*
 - Soundtracks: *Wrenwick*, *amaze98*
-- Visual Assets: *lynocs*, *penzilla*, TBD
+- Visual Assets: *lynocs*, *penzilla*, *Kira*
