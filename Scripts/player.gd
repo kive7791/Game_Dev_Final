@@ -62,7 +62,6 @@ func set_inventory_reference():
 		for child in current_scene.get_children():
 			print("player: child ", child.name)
 			if child.name == "InventoryPanel":
-				#inventory_panel = child.get_node("ScrollContainer/VBoxContainer")
 				inventory_panel = child
 				print("player: inventory_label ", inventory_panel)
 				break
@@ -103,15 +102,6 @@ func move_along_path(delta):
 	else:
 		position += velocity * delta
 		update_sprite_direction(starting_point)
-	
-	_draw()
-
-func _draw():
-	pass
-	# Visualize the path for debugging
-	if path.size() > 1:
-		for i in range(path.size() - 1):
-			draw_line(path[i], path[i + 1], Color.GREEN, .5)
 
 func update_sprite_direction(starting_point):
 	# Flip sprite only if the character is moving and the destination is significant
@@ -183,34 +173,6 @@ func add_item_to_ui(item: Node2D):
 				if inventory_panel.has_method("add_item"):  # Check if the method exists
 					inventory_panel.add_item(item.name, item_sprite)  # Directly call the method on the Player
 				break
-		#var item_hbox = HBoxContainer.new()
-		#item_hbox.name = item.name
-#
-		## Add item image
-		#var item_image = TextureRect.new()
-#
-		#var item_sprite : Texture = null
-		## Use a specific known class like AnimatedSprite2D
-		#for child in item.get_children():
-			#print("player: child ", child.name)
-			#if child.name == "AnimatedSprite2D":
-				#item_sprite = child.sprite_frames.get_frame_texture(child.animation, child.frame)
-				#break
-		#print("player: item ", item_sprite)
-		#if not item_sprite:
-			#print("Warning: Sprite not found for ", item.name)
-			#return
-#
-		#item_image.texture = item_sprite
-		#item_image.custom_minimum_size = Vector2(32, 32)  # Set icon size correctly
-		#item_hbox.add_child(item_image)
-#
-		## Add item name
-		#var item_label = Label.new()
-		#item_label.text = item.name
-		#item_hbox.add_child(item_label)
-#
-		#inventory_panel.add_child(item_hbox)
 
 # Example function for item interaction with a collectable item
 func _on_collectable_item_clicked(item_name):
@@ -225,16 +187,16 @@ func _on_collectable_item_clicked(item_name):
 
 # Example check for inventory completion
 func check_inventory_for_end_game():
-	var correct_order = ["Crystal", "Paper", "Key"]
+	#var correct_order = ["Crystal", "Paper", "Key"]
 	var index = 0
 	
 	if end_flag:
 		return
 
-	print("player: check_inventory_for_end_game_state")
+	#print("player: check_inventory_for_end_game_state")
 	if inventory_panel.has_method("item_index"):  # Check if the method exists
 		index = inventory_panel.item_index("Cyrstal")  # Directly call the method on the Player
-		print("Cyrstal Index: ", index)
+		#print("Cyrstal Index: ", index)
 		if index == 4:
 			index = inventory_panel.item_index("key_collectable")  # Directly call the method on the Player
 			if index == 3:
@@ -255,29 +217,3 @@ func trigger_bad_ending():
 	emit_signal("wrong_items_collected")
 	end_flag=true
 	# Transition to bad ending scene or display message
-
-# old code for player movement:
-#func _old(delta):
-	#var distance_to_destination = position.distance_to(destination)
-	#if (distance_to_destination != destination.x) and distance_to_destination > margin:
-		#distance = Vector2(destination - position)
-		## Check if the character is close enough to stop
-		#if distance_to_destination > margin:
-			 ## Check if the player has moved for the first time
-			#if distance != Vector2.ZERO and not has_moved:
-				#has_moved = true
-				#emit_signal("game_started")  # Emit the signal only once
-				#print("Player has started moving. Signal emitted.")
-			## Move towards destination
-			#velocity = distance.normalized() * move_speed
-			#change_state(WALK)
-			#move_and_slide()
-	#else:
-		## Stip and reset
-		#velocity = Vector2.ZERO
-		#position = destination # Snap to destination to avoid overshooting
-		#change_state(IDLE)
-	#
-	#if velocity.length() > 0:
-		## Update sprite orientation based on movement direction
-		#update_sprite_direction(destination, position)

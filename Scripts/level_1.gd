@@ -16,10 +16,10 @@ enum BackgroundState { DAY, NIGHT, NIGHTWLIGHTS }
 @onready var Lights_Sprite: Sprite2D = $light_event/Sprite2D
 @onready var Rug: Area2D = $rug_event
 @onready var Rug_Sprite: Sprite2D = $rug_event/Sprite2D
-@onready var Paper: Area2D = $paper_collectable
+@onready var Paper: Area2D = $Paper
 @onready var Pic: Area2D = $pic_event
 @onready var Pic_Sprite: Sprite2D = $pic_event/Sprite2D
-@onready var Blue_key: Area2D = $key_collectable
+@onready var Blue_key: Area2D = $Key
 @onready var background: Sprite2D = $Background/Sprite2D
 
 var new_path: PackedVector2Array = PackedVector2Array()
