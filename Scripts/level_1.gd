@@ -36,11 +36,10 @@ func calculated_mouse_to_target():
 			# Use the NavigationServer2D to calculate the path
 			new_path = NavigationServer2D.map_get_path(nav_map, start_position, target_position, false)
 			
-			line2D.points = new_path
-			
-			Player.path = new_path
-			
 			if new_path.size() > 0:
+				Player.path = new_path
+				line2D.points = new_path
+				Player.change_state(Player.WALK)
 				print("Path found:", new_path)
 			else:
 				print("No path could be found from", start_position, "to", target_position)

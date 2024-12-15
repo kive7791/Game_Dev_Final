@@ -5,7 +5,6 @@ signal game_started
 signal crystal_collected(body) # signal - crystal colleced for game
 
 # Resource: Youtube: Kilo Galaxia, Point & Click Adventure Game with Godot Tutorial - Advanced Character Motion
-@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 # Player movement
 @export var move_speed: float = 200.0 # movement speed  
@@ -14,7 +13,6 @@ signal crystal_collected(body) # signal - crystal colleced for game
 @export var jumpForce: float = 250000.0 # hieght of jump
 @export var max_jump: int = 2 # max jumps allowed
 @export var reset_position: Vector2 = Vector2(234, 621) # Beginning player position
-
 
 # Player health
 var health: int = 10
@@ -28,7 +26,7 @@ var jump_count: int = 0  # number of jumps
 var navigation_region: NavigationRegion2D = null
 var margin = 5
 var has_moved: bool = false
-var path: PackedVector2Array
+var path: PackedVector2Array = PackedVector2Array()  # The path to follow
 
 enum{IDLE, JUMP, WALK, INTERACT, STOP} # could change
 
@@ -48,7 +46,6 @@ func _ready():
 	add_to_group("Player")
 	change_state(IDLE)
 	destination = position
-	day_timer = 0.0  # Reset timer at start
 	set_inventory_reference()
 
 # Dynamically set the inventory label reference
@@ -72,38 +69,46 @@ func _process(delta):
 		IDLE:
 			pass
 		WALK:
-			move_along_path()
+			move_along_path(delta)
 
-func move_along_path():
+func move_along_path(delta):
+	if path.size() == 0:
+		change_state(IDLE)
+		return
+	
+	var move_distance = move_speed * delta
 	var starting_point = position
+	var next_point = path[0] #only accessed if path.size() > 0
+	var direction = (next_point - starting_point).normalized()
+	var distance_to_next = starting_point.distance_to(path[0])
+	
+	
+	if move_distance < distance_to_next:
+		velocity = direction * move_speed
+	else:
+		velocity = Vector2.ZERO
+		path = path.slice(1) # Move to nexr point
+	
+	if path.size() == 0:
+			change_state(IDLE)
+	else:
+		position += velocity * delta
+		update_sprite_direction(starting_point)
 	
 	_draw()
-	pass
-	
 
 func _draw():
 	# Visualize the path for debugging
 	if path.size() > 1:
 		for i in range(path.size() - 1):
-			draw_line(path[i], path[i + 1], Color.GREEN, 2)
+			draw_line(path[i], path[i + 1], Color.GREEN, .5)
 
-func _input(event: InputEvent) -> void:
-	#print("player: _input ", event)
-	# Handle the user input
-	if Input.is_action_pressed("ui_left_mouseclick"):
-		destination = get_global_mouse_position()
-		snap_position.x = destination.x
-		snap_position.y = position.y
-
-func update_sprite_direction(destination, position):
-	#print("player: update_sprite_direction", destination, position)
+func update_sprite_direction(starting_point):
 	# Flip sprite only if the character is moving and the destination is significant
-	var direction = destination - position
-	if direction.length() > margin:
-		if direction.x > 0:
-			$AnimatedSprite2D.flip_h = false  # Face right
-		elif direction.x < 0:
-			$AnimatedSprite2D.flip_h = true  # Face left
+	if starting_point.x < path[0].x:
+		$AnimatedSprite2D.flip_h = false  # Face right
+	elif starting_point.x > path[0].x:
+		$AnimatedSprite2D.flip_h = true  # Face left
 
 func stop():
 	print("player: stop")
@@ -241,4 +246,3 @@ func trigger_bad_ending():
 	#if velocity.length() > 0:
 		## Update sprite orientation based on movement direction
 		#update_sprite_direction(destination, position)
-
