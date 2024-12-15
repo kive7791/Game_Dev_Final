@@ -2,20 +2,30 @@ extends Node2D
 
 signal pause_game
 signal lost_timeout_game
+signal lights
+
+enum BackgroundState { DAY, NIGHT, NIGHTWLIGHTS }
 
 #Not used at the moment
 @onready var line2D: Line2D = $Line2D
 @onready var navigation_region: NavigationRegion2D = $NavigationRegion2D
 @onready var Player: CharacterBody2D = $Player
 @onready var Collectable: Area2D = $Crystal
+@onready var background = $Background/Sprite2D
+@onready var light_button = $Background/LightsButton
 
 var new_path: PackedVector2Array = PackedVector2Array()
+var current_state = BackgroundState.DAY
 
 func _ready() -> void:
 	$GameplayTimer.stop()  # Ensure timer is stopped initially
 	$GameplayTimer.one_shot = true  # Timer will not loop
 	Player.connect("game_started", Callable(self, "_on_level_game_started"))
 	$GameplayTimer.connect("timeout", Callable(self, "_on_gameplay_timer_timeout"))
+	
+	#Making a light button so I can check if it is being hit
+	light_button.visible = false
+	light_button.connect("lights", Callable(self, "_on_lights_pressed"))
 
 func _input(event: InputEvent) -> void:
 	# TODO Defined area for the player to move
@@ -39,7 +49,7 @@ func calculated_mouse_to_target():
 				Player.path = new_path
 				line2D.points = new_path
 				Player.change_state(Player.WALK)
-				print("Path found:", new_path)
+				#print("Path found:", new_path)
 			else:
 				print("No path could be found from", start_position, "to", target_position)
 		else:
@@ -61,6 +71,25 @@ func _process(delta):
 		
 		# Update the TimerLabel with minutes and seconds
 		$TimerLabel.text = "%02d:%02d" % [minutes, seconds]
+		
+		# Check the timer and change the background state
+		if time_left <= 150 and current_state == BackgroundState.DAY:
+			change_background_state(BackgroundState.NIGHT)
+
+func change_background_state(new_state):
+	current_state = new_state
+	
+	match current_state:
+		BackgroundState.DAY:
+			background.texture = preload("res://Assets/Background/bedroom.png")  # Day background
+			light_button.visible = false
+		
+		BackgroundState.NIGHT:
+			background.texture = preload("res://Assets/Background/bedroom_nolight.png")  # Night background
+			light_button.visible = true  # Allow user to turn on lights
+		
+		BackgroundState.NIGHTWLIGHTS:
+			background.texture = preload("res://Assets/Background/bedroom_light.png")  # Night with lights
 
 func _on_gameplay_timer_timeout() -> void:
 	print("Time ran out! Player loses.")
@@ -69,6 +98,10 @@ func _on_gameplay_timer_timeout() -> void:
 func _on_pause_pressed() -> void:
 	print("level_1_screen _on_pause_pressed")
 	emit_signal("pause_game")
+
+func _on_lights_pressed() -> void:
+	if current_state == BackgroundState.NIGHT:
+		change_background_state(BackgroundState.NIGHTWLIGHTS)
 
 func _on_crystal_collectable_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if !Input.is_action_pressed("ui_left_mouseclick"):

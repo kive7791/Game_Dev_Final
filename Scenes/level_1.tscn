@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_xkot6"]
 [ext_resource type="PackedScene" uid="uid://cxhmbcu2y6onb" path="res://Scenes/player.tscn" id="2_elqvt"]
 [ext_resource type="PackedScene" uid="uid://c3ihpiaq710y5" path="res://Scenes/inventory.tscn" id="2_hju6f"]
-[ext_resource type="Texture2D" uid="uid://q5005jvj3jms" path="res://Assets/Background/bedroom.png" id="3_gi6xq"]
-[ext_resource type="PackedScene" uid="uid://rdy6f15stj8w" path="res://Scenes/collectable.tscn" id="4_q5lny"]
-[ext_resource type="FontFile" uid="uid://bgl0xeuk5pooi" path="res://Assets/Fonts/Titles.otf" id="5_fyhvu"]
-[ext_resource type="FontFile" uid="uid://cii3m35vlemkk" path="res://Assets/Fonts/Timer.otf" id="6_5fpjs"]
+[ext_resource type="Texture2D" uid="uid://dtgsu1i0fhspe" path="res://Assets/Background/bedroom.png" id="3_gi6xq"]
+[ext_resource type="PackedScene" uid="uid://rdy6f15stj8w" path="res://Scenes/crystal_collectable.tscn" id="4_q5lny"]
+[ext_resource type="FontFile" uid="uid://dakmbpjfr0nm2" path="res://Assets/Fonts/Titles.otf" id="5_fyhvu"]
+[ext_resource type="FontFile" uid="uid://bqxe1amm4ygef" path="res://Assets/Fonts/Timer.otf" id="6_5fpjs"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nv4m1"]
 vertices = PackedVector2Array(437, 562, 716.609, 570.344, 850.398, 641.313, 637.922, 643, 170.398, 643.953, 243.711, 562.023, 274.422, 562, 437, 528.891, 711.992, 526.094, 248.117, 540.398, 240.32, 543.383)
@@ -51,6 +51,12 @@ position = Vector2(576.5, 324.5)
 scale = Vector2(0.281006, 0.280816)
 texture = ExtResource("3_gi6xq")
 
+[node name="LightsButton" type="Button" parent="Background"]
+offset_left = 700.0
+offset_top = 19.0
+offset_right = 739.0
+offset_bottom = 59.0
+
 [node name="PauseButton" type="Button" parent="."]
 z_index = 1
 offset_left = 991.0
@@ -62,7 +68,7 @@ theme_override_font_sizes/font_size = 50
 text = "Menu"
 
 [node name="GameplayTimer" type="Timer" parent="."]
-wait_time = 300.0
+wait_time = 153.0
 one_shot = true
 
 [node name="TimerLabel" type="Label" parent="."]
@@ -77,5 +83,6 @@ theme_override_fonts/font = ExtResource("6_5fpjs")
 theme_override_font_sizes/font_size = 25
 horizontal_alignment = 1
 
+[connection signal="pressed" from="Background/LightsButton" to="." method="_on_lights_pressed"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_pressed"]
 [connection signal="timeout" from="GameplayTimer" to="." method="_on_gameplay_timer_timeout"]
