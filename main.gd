@@ -40,6 +40,7 @@ func _start_intro() -> void:
 	if current_scene:
 		current_scene.queue_free()
 	current_scene = intro_scene.instantiate()
+	print("main: current_scene ", current_scene.name, current_scene.get_index())
 	add_child(current_scene)
 	
 	if GlobalPriorScene:
@@ -78,7 +79,8 @@ func _on_credit_game() -> void:
 	if current_scene:
 		current_scene.queue_free()
 	current_scene = credit_scene.instantiate()
-	add_child(current_scene)
+	print("main: current_scene ", current_scene.name, current_scene.get_index())
+	get_parent().add_child(current_scene)
 	current_scene.connect("back_game", Callable(self, "_on_back_game"))
 	current_scene.connect("quit_game", Callable(self, "_on_quit_game"))
 
@@ -133,7 +135,8 @@ func load_level(level_index: int) -> void:
 	
 	# Load the level scene
 	current_scene = level_scenes[level_index].instantiate()
-	add_child(current_scene)
+	print("main: current_scene ", current_scene.name, " ", current_scene.get_index(), " ", current_scene.get_children())
+	get_parent().add_child(current_scene)
 	GlobalPriorScene.push_scene(level_scenes[level_index])
 	print("Pushed level_scene")
 	
