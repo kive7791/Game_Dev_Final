@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://rdy6f15stj8w"]
+
+[ext_resource type="Script" path="res://Scripts/collectable.gd" id="1_4mser"]
+[ext_resource type="Texture2D" uid="uid://c1i83dakkk5dj" path="res://Assets/Collectable/Crystal/red_crystal_0000.png" id="2_xvw5k"]
+[ext_resource type="Texture2D" uid="uid://dt8q5ivin32c1" path="res://Assets/Collectable/Crystal/red_crystal_0001.png" id="3_n8lw0"]
+[ext_resource type="Texture2D" uid="uid://dn2iwqec6yidk" path="res://Assets/Collectable/Crystal/red_crystal_0002.png" id="4_rrqaa"]
+[ext_resource type="Texture2D" uid="uid://dm3dcocd4mm32" path="res://Assets/Collectable/Crystal/red_crystal_0003.png" id="5_itw4j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6nnt"]
+atlas = ExtResource("2_xvw5k")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hqmi"]
+atlas = ExtResource("3_n8lw0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qg8a"]
+atlas = ExtResource("4_rrqaa")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3jmt"]
+atlas = ExtResource("5_itw4j")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_svc2j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6nnt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hqmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qg8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3jmt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_itw4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rrqaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n8lw0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xvw5k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5lpl1"]
+size = Vector2(24, 48)
+
+[node name="crystal_collectable" type="Area2D" groups=["Collectible"]]
+collision_layer = 2
+script = ExtResource("1_4mser")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_svc2j")
+frame_progress = 0.593635
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_5lpl1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="crystal_collected" from="." to="." method="_on_crystal_collected"]
