@@ -92,20 +92,20 @@ func _process(delta):
 		if time_left <= 150 and current_state == BackgroundState.DAY:
 			Lights.visible = true
 			Rug.visible = false
-			Blue_key.visible = false
+			#Blue_key.visible = false
 			Pic.visible = false
-			Paper.visible = false
+			#Paper.visible = false
 			
-			if not is_visible_in_tree():
-				$rug_event/CollisionShape2D.disabled = true
-				$Key/CollisionShape2D.disabled = true
-				$Paper/CollisionShape2D.disabled = true
-				$pic_event/CollisionShape2D.disabled = true
-			else:
-				$rug_event/CollisionShape2D.disabled = false
-				$Key/CollisionShape2D.disabled = false
-				$Paper/CollisionShape2D.disabled = false
-				$pic_event/CollisionShape2D.disabled = false
+			#if not is_visible_in_tree():
+				#$rug_event/CollisionShape2D.disabled = true
+				#$Key/CollisionShape2D.disabled = true
+				#$Paper/CollisionShape2D.disabled = true
+				#$pic_event/CollisionShape2D.disabled = true
+			#else:
+				#$rug_event/CollisionShape2D.disabled = false
+				#$Key/CollisionShape2D.disabled = false
+				#$Paper/CollisionShape2D.disabled = false
+				#$pic_event/CollisionShape2D.disabled = false
 			
 			change_background_state(BackgroundState.NIGHT)
 
